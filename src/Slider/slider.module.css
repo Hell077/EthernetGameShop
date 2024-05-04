@@ -3,5 +3,11 @@
     height: 700px;
     border: 1px solid red;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+
+}
+
+.bigFont{
+    width: 60px;
+    height: 100px;
 }
