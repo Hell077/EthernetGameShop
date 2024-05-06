@@ -3,10 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCubes, faHandshakeAngle, faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
-
-    
-
-
     return (<>
         <div className={style.header}>
             <div className={style.container}>

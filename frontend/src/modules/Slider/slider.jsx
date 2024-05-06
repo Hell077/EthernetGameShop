@@ -11,9 +11,9 @@ function Slider() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [
         //Путь до картинок
-        'src\\Slider\\SlideImages\\75uB5oyUT-o.jpg',
-        'src\\Slider\\SlideImages\\загружено.jpg',
-        'src\\Slider\\SlideImages\\OIG3.jpg'
+        'src\\modules\\Slider\\SlideImages\\image1.jpg',
+        'src\\modules\\Slider\\SlideImages\\загружено.jpg',
+        'src\\modules\\Slider\\SlideImages\\OIG3.jpg'
     ];
 
     const handlePreviousImage = useCallback(() => {
