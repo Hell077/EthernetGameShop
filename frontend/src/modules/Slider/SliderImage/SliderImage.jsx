@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types';
 import style from './SliderImage.module.css';
 
 function SliderImage(props) {
     return (
-        <div className={`${style.SliderImage} ${props.isActive && style.active}`}>
+        <button className={`${style.SliderImage} ${props.isActive && style.active}`}>
+            <div className={style.container}>
+                <p className={style.title}>{props.title}</p>
+                <p className={style.price}>{props.price}</p>
+            </div>
             <img src={props.imageUrl} alt="Slider" />
-        </div>
+        </button>
     );
 }
 
-SliderImage.propTypes = {
-    imageUrl: PropTypes.string.isRequired,
-    isActive: PropTypes.string
-};
+
 
 export default SliderImage;

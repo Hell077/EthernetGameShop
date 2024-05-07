@@ -7,7 +7,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
     <MainPage/>
      {/* <NotFoundPage/> */}
-     <p></p>
+     
     </BrowserRouter>
 
 )
