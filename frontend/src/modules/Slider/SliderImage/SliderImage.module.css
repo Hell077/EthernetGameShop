@@ -54,34 +54,6 @@
     height: 100%;
     font-size: 40px;
     border-left: 1px solid rgb(0, 0, 0);
-    animation: colorChange 10s linear gradient;
     overflow: hidden;
 }
 
-
-
-
-
-
-
-@keyframes colorChange {
-    0% {
-      border-color: rgb(255, 0, 0);
-    }
-    20% {
-      border-color: rgb(255, 0, 255);
-    }
-    40% {
-      border-color: rgb(0, 0, 255);
-    }
-    60% {
-      border-color: rgb(0, 255, 255);
-    }
-    80% {
-      border-color: rgb(0, 255, 0);
-  
-    }
-    100% {
-      border-color: rgb(255, 0, 0);
-    }
-  }
