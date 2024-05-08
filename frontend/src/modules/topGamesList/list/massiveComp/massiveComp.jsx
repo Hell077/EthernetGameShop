@@ -1,9 +1,9 @@
 
 import styles from './styles.module.css';
 
-function MassiveComp({ tagH, tagP, image, key }) {
+function MassiveComp({ tagH, tagP, image }) {
     return (
-        <button className={styles.massive} key={key}>
+        <button className={styles.massive}>
             <img src={image} alt="none" className={styles.image} />
             <div className={styles.flexInMassive}>
                 <h1 className={styles.tagH}>{tagH}</h1>
