@@ -17,14 +17,21 @@ function Footer() {
                     <PayImage Image={MasterCard} />
                     <PayImage Image={PayPal} />
                 </div>
-                
+                <hr />
                 <div className={style.BottomContainer}>
-                    <div className={style.fraction}></div>
-                    <hr />
-                    <div className={style.fraction}></div>
-                    <hr />
                     <div className={style.fraction}>
-                        <FooterBtns title = '123'/></div>     
+                        <FooterBtns title="Главная" />
+                    </div>
+                    <div className={style.fraction}>
+                        <FooterBtns title="О нас" />
+                        <FooterBtns title="Политика возврата" />
+                    </div>
+                    <div className={style.fraction}>
+                        <FooterBtns title="Пользовательское соглашение" />
+                        <FooterBtns title="Политика конфиденциальности" />
+                        <FooterBtns title="Политика возврата" />
+                        <FooterBtns title="Согласие на обработку персональных данных" />
+                    </div>
                 </div>
 
             </div>
