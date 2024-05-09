@@ -23,16 +23,8 @@ function Footer() {
                     <hr />
                     <div className={style.fraction}></div>
                     <hr />
-                    <div className={style.fraction}><FooterBtns title = '123'/></div>
-                    
-                    
-
-                    
-                    
-                  
-
-                    
-                    
+                    <div className={style.fraction}>
+                        <FooterBtns title = '123'/></div>     
                 </div>
 
             </div>

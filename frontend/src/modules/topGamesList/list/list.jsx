@@ -1,9 +1,10 @@
 import ListElement from './listElement/listElement';
 import styles from '../topGamesList.module.css'
-import manorlords from './listImages/manorlords.jpg'
+
 
 
 //image link \/
+import manorlords from './listImages/manorlords.jpg'
 import MassiveComp from './massiveComp/massiveComp';
 import dota2 from './listImages/dota2.jpg'
 import helldrivers from './listImages/helldivers.jpg'
