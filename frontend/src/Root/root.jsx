@@ -1,14 +1,15 @@
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import MainPage from '../pages/mainPage';
-// import NotFoundPage from '../pages/notFoundPage'
+import NotFoundPage from '../pages/notFoundPage';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
 import './root.css';
-import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-    <MainPage/>
-     {/* <NotFoundPage/> */}
-     
-    </BrowserRouter>
-
-)
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </BrowserRouter>
+);
