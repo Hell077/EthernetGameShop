@@ -6,6 +6,7 @@ import FooterBtns from './FooterBTN/footerBTN';
 import Visa from './PayImage/Images/visaLogo.svg'
 import MasterCard from './PayImage/Images/MastercardLogo.svg'
 import PayPal from './PayImage/Images/PayPal.svg.png'
+import { Link } from 'react-router-dom'
 
 
 function Footer() {
@@ -20,17 +21,28 @@ function Footer() {
                 <hr />
                 <div className={style.BottomContainer}>
                     <div className={style.fraction}>
-                        <FooterBtns title="Главная" />
+                        <Link to='/'>
+                            <FooterBtns title="Главная" />
+                        </Link>
                     </div>
                     <div className={style.fraction}>
-                        <FooterBtns title="О нас" />
-                        <FooterBtns title="Политика возврата" />
+                        <Link to='AboutUs'>
+                            <FooterBtns title="О нас" />
+                        </Link>
+                        <Link to='Policy'>
+                            <FooterBtns title="Политика возврата" />
+                        </Link>
                     </div>
                     <div className={style.fraction}>
-                        <FooterBtns title="Пользовательское соглашение" />
-                        <FooterBtns title="Политика конфиденциальности" />
-                        <FooterBtns title="Политика возврата" />
-                        <FooterBtns title="Согласие на обработку персональных данных" />
+                        <Link to='UserPolicy'>
+                            <FooterBtns title="Пользовательское соглашение" />
+                        </Link>
+                        <Link to='Confidithional'>
+                            <FooterBtns title="Политика конфиденциальности" />
+                        </Link>
+                        <Link to='PersonalData'>
+                            <FooterBtns title="Согласие на обработку персональных данных" />
+                        </Link>
                     </div>
                 </div>
 
