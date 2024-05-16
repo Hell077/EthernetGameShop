@@ -6,6 +6,7 @@ import AboutPage from '../pages/aboutPage';
 import ReturnPage from '../pages/returnPage';
 import UserConfirmPage from '../pages/userconfirmPage';
 import ConfPage from '../pages/confidentialityPage';
+import PersPage from '../pages/personPage';
 
 
 import './root.css';
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="return" element={<ReturnPage/>}/>
       <Route path="confirm" element={<UserConfirmPage/>}/>
       <Route path="confident" element={<ConfPage/>}/>
+      <Route path="person" element={<PersPage/>}/>
     </Routes>
   </BrowserRouter>
 );
