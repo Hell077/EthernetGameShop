@@ -1,7 +1,5 @@
 import style from './pagesMainStyle/notFoundPage.module.css'
-import Footer from '../modules/Footer/footer';
-import { Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'
 
 function NotFoundPage() {
     return (
@@ -9,12 +7,11 @@ function NotFoundPage() {
             <div className={style.flex}>
                 <div className={style.content}>
                     <p>Такой страницы не существует</p>
-                    <button>
-                        <Link to="/" className={style.link}>На главную</Link>
-                    </button>
+                    <Link to= '/'>
+                        <button>На главную</button>
+                    </Link>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }
