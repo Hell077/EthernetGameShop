@@ -21,12 +21,10 @@ function Footer() {
                 <hr />
                 <div className={style.BottomContainer}>
                     <div className={style.fraction}>
-<<<<<<< HEAD
                         <FooterBtns title="Главная" path = "/"/>
                     </div>
                     <div className={style.fraction}>
                         <FooterBtns title="О нас" />
-=======
                         <Link to='/'>
                             <FooterBtns title="Главная" />
                         </Link>
@@ -38,7 +36,6 @@ function Footer() {
                         <Link to='Policy'>
                             <FooterBtns title="Политика возврата" />
                         </Link>
->>>>>>> 026e15a236b33964e02b62a11c09cf62f42311c3
                     </div>
                     <div className={style.fraction}>
                         <Link to='UserPolicy'>
