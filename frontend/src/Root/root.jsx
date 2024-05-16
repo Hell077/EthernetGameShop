@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import MainPage from '../pages/mainPage';
 import NotFoundPage from '../pages/notFoundPage';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './root.css';
 

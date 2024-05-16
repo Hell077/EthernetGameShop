@@ -8,6 +8,10 @@
     background-color: #9c9c9c;
 }
 
+.link{
+    text-decoration: none;
+}
+
 .content {
     display: flex;
     align-items: center;

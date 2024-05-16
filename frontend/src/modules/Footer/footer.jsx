@@ -20,11 +20,10 @@ function Footer() {
                 <hr />
                 <div className={style.BottomContainer}>
                     <div className={style.fraction}>
-                        <FooterBtns title="Главная" />
+                        <FooterBtns title="Главная" path = "/"/>
                     </div>
                     <div className={style.fraction}>
                         <FooterBtns title="О нас" />
-                        <FooterBtns title="Политика возврата" />
                     </div>
                     <div className={style.fraction}>
                         <FooterBtns title="Пользовательское соглашение" />
@@ -33,7 +32,6 @@ function Footer() {
                         <FooterBtns title="Согласие на обработку персональных данных" />
                     </div>
                 </div>
-
             </div>
         </footer>
     );
