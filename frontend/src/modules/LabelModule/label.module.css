@@ -1,5 +1,22 @@
-.MainLabel{
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+.MainLabel {
+    padding-top: 50px;
+    margin: auto;
     width: 800px;
-    height: 80vh;
-    align-items: center;
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    border: 1px solid;
+    margin-top: 20px;
+    background-color: #fff;
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    gap: 30px;
 }
