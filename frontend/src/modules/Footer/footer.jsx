@@ -22,12 +22,12 @@ function Footer() {
                     </div>
                     <div className={style.fraction}>
                         <FooterBtns title="О нас" path = "about"/>
-                        <FooterBtns title="Политика возврата" path = ""/>
+                        <FooterBtns title="Политика возврата" path = "return"/>
                     </div>
                     <div className={style.fraction}>
-                        <FooterBtns title="Пользовательское соглашение"  path = ""/>
-                        <FooterBtns title="Политика конфиденциальности"  path = ""/>
-                        <FooterBtns title="Согласие на обработку персональных данных"  path = ""/>
+                        <FooterBtns title="Пользовательское соглашение"  path = "confirm"/>
+                        <FooterBtns title="Политика конфиденциальности"  path = "confident"/>
+                        <FooterBtns title="Согласие на обработку персональных данных"  path = "person"/>
                     </div>
                 </div>
             </div>
