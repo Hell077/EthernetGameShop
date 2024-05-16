@@ -6,7 +6,6 @@ import FooterBtns from './FooterBTN/footerBTN';
 import Visa from './PayImage/Images/visaLogo.svg'
 import MasterCard from './PayImage/Images/MastercardLogo.svg'
 import PayPal from './PayImage/Images/PayPal.svg.png'
-import { Link } from 'react-router-dom'
 
 
 function Footer() {
@@ -21,32 +20,16 @@ function Footer() {
                 <hr />
                 <div className={style.BottomContainer}>
                     <div className={style.fraction}>
-                        <FooterBtns title="Главная" path = "/"/>
+                        <FooterBtns title="Главная"  path = "/"/>
                     </div>
                     <div className={style.fraction}>
-                        <FooterBtns title="О нас" />
-                        <Link to='/'>
-                            <FooterBtns title="Главная" />
-                        </Link>
+                        <FooterBtns title="О нас" path = "about"/>
+                        <FooterBtns title="Политика возврата" path = ""/>
                     </div>
                     <div className={style.fraction}>
-                        <Link to='AboutUs'>
-                            <FooterBtns title="О нас" />
-                        </Link>
-                        <Link to='Policy'>
-                            <FooterBtns title="Политика возврата" />
-                        </Link>
-                    </div>
-                    <div className={style.fraction}>
-                        <Link to='UserPolicy'>
-                            <FooterBtns title="Пользовательское соглашение" />
-                        </Link>
-                        <Link to='Confidithional'>
-                            <FooterBtns title="Политика конфиденциальности" />
-                        </Link>
-                        <Link to='PersonalData'>
-                            <FooterBtns title="Согласие на обработку персональных данных" />
-                        </Link>
+                        <FooterBtns title="Пользовательское соглашение"  path = ""/>
+                        <FooterBtns title="Политика конфиденциальности"  path = ""/>
+                        <FooterBtns title="Согласие на обработку персональных данных"  path = ""/>
                     </div>
                 </div>
             </div>
