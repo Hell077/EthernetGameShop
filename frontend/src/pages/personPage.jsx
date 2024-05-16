@@ -1,3 +1,5 @@
+import LabelModule from "../modules/LabelModule/labelModule";
+
 function PersPage() {
     return ( 
         <>

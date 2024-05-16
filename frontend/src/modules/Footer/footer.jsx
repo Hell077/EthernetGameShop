@@ -21,13 +21,13 @@ function Footer() {
                         <FooterBtns title="Главная"  path = "/"/>
                     </div>
                     <div className={style.fraction}>
-                        <FooterBtns title="О нас" path = "about"/>
-                        <FooterBtns title="Политика возврата" path = "return"/>
+                        <FooterBtns title="О нас" path = "/about"/>
+                        <FooterBtns title="Политика возврата" path = "/return"/>
                     </div>
                     <div className={style.fraction}>
-                        <FooterBtns title="Пользовательское соглашение"  path = "confirm"/>
-                        <FooterBtns title="Политика конфиденциальности"  path = "confident"/>
-                        <FooterBtns title="Согласие на обработку персональных данных"  path = "person"/>
+                        <FooterBtns title="Пользовательское соглашение"  path = "/confirm"/>
+                        <FooterBtns title="Политика конфиденциальности"  path = "/confident"/>
+                        <FooterBtns title="Согласие на обработку персональных данных"  path = "/person"/>
                     </div>
                 </div>
             </div>
