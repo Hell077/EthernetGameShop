@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 .MainLabel {
-    padding-top: 50px;
+    padding: 50px 20px 20px 20px;
     margin: auto;
-    width: 800px;
+    width: 900px;
     height: auto;
     min-height: 200px;
     display: flex;
@@ -19,4 +19,6 @@
     font-style: normal;
     font-size: 25px;
     gap: 30px;
+    margin-bottom: 30px;
+    border-radius: 20px;
 }
