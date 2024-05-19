@@ -1,4 +1,4 @@
-import LabelModule from "../modules/LabelModule/labelModule";
+import LabelModule from "../../../modules/LabelModule/labelModule";
 
 function AboutPage() {
     return (

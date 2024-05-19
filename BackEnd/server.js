@@ -2,16 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { connectDB, getDB } from './mongoDb.js';
-
 const app = express();
 const port = 3000;
-
 app.use(cors());
 app.use(bodyParser.json());
-
 app.post('/login', async (req, res) => {
   const { login, password } = req.body;
-
   if (!login || !password) {
     return res.status(400).send({ error: 'Логин и пароль должны быть заполнены' });
   }

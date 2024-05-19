@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import InputRgb from "../modules/inputRGB/inputRGB";
-import style from '../pages/pagesMainStyle/RegisterPage.module.css'
+import InputRgb from "../../modules/inputRGB/inputRGB"; //Замените импорт тут обычное инпут поле
+import style from './RegisterPage.module.css' //Замените импорт 
 import { useNavigate } from 'react-router-dom';
 
 function RegPage() {
@@ -30,9 +30,9 @@ function RegPage() {
             });
             console.log(response.data);
 
-            if (response.status === 201) { // Предположим, что успешное создание пользователя возвращает статус 201
+            if (response.status === 201) { 
                 console.log('Успешная регистрация');
-                navigate('/'); // Перенаправляем на страницу входа после успешной регистрации
+                navigate('/'); 
             } else {
                 alert('Ошибка при регистрации');
             }
