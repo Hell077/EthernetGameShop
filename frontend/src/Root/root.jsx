@@ -7,20 +7,24 @@ import ReturnPage from '../pages/returnPage';
 import UserConfirmPage from '../pages/userconfirmPage';
 import ConfPage from '../pages/confidentialityPage';
 import PersPage from '../pages/personPage';
-
+import LoginPage from '../pages/LoginPage';
+import RegPage from '../pages/RegisterPage';
 
 import './root.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<MainPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path = '/register' element={<RegPage/>}/>
+      <Route path="/main" element={<MainPage />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="about" element={<AboutPage />}/>
-      <Route path="return" element={<ReturnPage/>}/>
-      <Route path="confirm" element={<UserConfirmPage/>}/>
-      <Route path="confident" element={<ConfPage/>}/>
-      <Route path="person" element={<PersPage/>}/>
+      <Route path="about" element={<AboutPage />} />
+      <Route path="return" element={<ReturnPage />} />
+      <Route path="confirm" element={<UserConfirmPage />} />
+      <Route path="confident" element={<ConfPage />} />
+      <Route path="person" element={<PersPage />} />
     </Routes>
   </BrowserRouter>
+
 );
