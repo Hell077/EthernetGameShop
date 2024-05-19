@@ -14,7 +14,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './root.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
@@ -27,6 +26,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="confident" element={<ConfPage />} />
         <Route path="person" element={<PersPage />} />
       </Routes>
-    </BrowserRouter>
-  
+    </BrowserRouter>  
 );

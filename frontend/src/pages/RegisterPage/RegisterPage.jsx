@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import InputRgb from "../../modules/inputRGB/inputRGB"; //Замените импорт тут обычное инпут поле
-import style from './RegisterPage.module.css' //Замените импорт 
+import InputRgb from "../../modules/inputRGB/inputRGB"; 
+import style from './RegisterPage.module.css' 
 import { useNavigate } from 'react-router-dom';
 
 function RegPage() {
