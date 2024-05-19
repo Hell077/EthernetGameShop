@@ -42,16 +42,16 @@ function LoginPage() {
     <div className={style.flex}>
       <div className={style.registerContainer}>
         <div className={style.inputContainer}>
-          <InputRgb 
-            type="text" 
-            placeholder="login" 
-            value={login} 
+          <InputRgb
+            type="text"
+            placeholder="login"
+            value={login}
             onChange={(e) => setLogin(e.target.value)}
           />
-          <InputRgb 
-            type="password" 
-            placeholder="Password" 
-            value={password} 
+          <InputRgb
+            type="password"
+            placeholder="Password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -60,6 +60,8 @@ function LoginPage() {
           <Link to="/register">
             <button className={style.button}>Регистрация</button>
           </Link>
+          
+
         </div>
       </div>
     </div>
