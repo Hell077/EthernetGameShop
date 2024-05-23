@@ -10,7 +10,7 @@ function NotFoundPage() {
     <div className={style.flex}>
       <div className={style.content}>
         <p>Такой страницы не существует</p>
-        <Link to="/">
+        <Link to="/main">
           <button>На главную</button>
         </Link>
     
