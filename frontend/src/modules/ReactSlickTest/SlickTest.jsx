@@ -7,7 +7,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 function Slick() {
     const slides = [
-        { img: "https://source.unsplash.com/random/1800x700?sig=1", text: 'Slide 1 Description', price: '$49.99' },
+        { img: "", text: 'Slide 1 Description', price: '$49.99' },
         { img: "https://source.unsplash.com/random/1800x700?sig=2", text: 'Slide 2 Description', price: '$49.99' },
         { img: "https://source.unsplash.com/random/1800x700?sig=3", text: 'Slide 3 Description', price: '$59.99' },
         { img: "https://source.unsplash.com/random/1800x700?sig=4", text: 'Slide 4 Description', price: '$79.99' },
@@ -37,8 +37,8 @@ function Slick() {
                 },
             },
         ],
-        prevArrow: <FaChevronLeft />, // Стрелка "Назад"
-        nextArrow: <FaChevronRight />, // Стрелка "Вперед"
+        prevArrow: <FaChevronLeft />, 
+        nextArrow: <FaChevronRight />, 
     };
 
     return (
