@@ -18,7 +18,7 @@ function Footer() {
                 <hr />
                 <div className={style.BottomContainer}>
                     <div className={style.fraction}>
-                        <FooterBtns title="Главная"  path = "/"/>
+                        <FooterBtns title="Главная"  path = "/main"/>
                     </div>
                     <div className={style.fraction}>
                         <FooterBtns title="О нас" path = "/about"/>
