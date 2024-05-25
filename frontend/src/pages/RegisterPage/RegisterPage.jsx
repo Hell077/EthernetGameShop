@@ -42,37 +42,39 @@ function RegPage() {
         }
     };
 
-    return (
-        <div className={style.flex}>
-            <div className={style.registerContainer}>
-                <div className={style.inputContainer}>
-                    <InputRgb
-                        type="text"
-                        placeholder="Login"
-                        value={login}
-                        onChange={(e) => setLogin(e.target.value)}
-                    />
-                    <InputRgb
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <InputRgb
-                        type="password"
-                        placeholder="Repeat password"
-                        value={repeatPassword}
-                        onChange={(e) => setRepeatPassword(e.target.value)}
-                    />
+    return (<>
+            <div className={style.flex}>
+                <div className={style.registerContainer}>
+                    <div className={style.inputContainer}>
+                        <InputRgb
+                            type="text"
+                            placeholder="Login"
+                            value={login}
+                            onChange={(e) => setLogin(e.target.value)}
+                        />
+                        <InputRgb
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <InputRgb
+                            type="password"
+                            placeholder="Repeat password"
+                            value={repeatPassword}
+                            onChange={(e) => setRepeatPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className={style.buttonContainer}>
+                        <button className={style.button} onClick={handleRegister}>Регистрация</button>
+                    </div>
+                    <Link to="/">
+                        <button className={style.button}>К авторизации</button>
+                    </Link>
                 </div>
-                <div className={style.buttonContainer}>
-                    <button className={style.button} onClick={handleRegister}>Регистрация</button>
-                </div>
-                <Link to="/">
-                    <button className={style.button}>К авторизации</button>
-                </Link>
             </div>
-        </div>
+        </>
+
     );
 }
 
