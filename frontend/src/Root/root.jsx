@@ -8,10 +8,12 @@ import ConfPage from '../pages/PolicyPages/confidentialityPage/confidentialityPa
 import PersPage from '../pages/PolicyPages/PersonPage/personPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegPage from '../pages/RegisterPage/RegisterPage';
+import ProfilePage from '../pages/ProfilePage/profilePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 import './root.css';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -25,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="confirm" element={<UserConfirmPage />} />
         <Route path="confident" element={<ConfPage />} />
         <Route path="person" element={<PersPage />} />
+        <Route path="profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>  
 );

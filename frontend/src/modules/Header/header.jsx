@@ -3,9 +3,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCartShopping, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 
 function Header() {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+    const openProfile = () =>{
+        navigate('/profile');
+    }
+    const openCart = () =>{
+        navigate('/cart');
+    }
+    const openCatalog = () =>{
+        navigate('/catalog');
+    }
+
 
     function togglePopUp() {
         setOpen(!open);
@@ -13,21 +25,30 @@ function Header() {
     return (
         <>
             <div className={`${styles.PopUpWindow} ${open ? styles.open : ''}`}>
-                <FontAwesomeIcon icon={faXmark} onClick={togglePopUp} className={styles.icon}/>
+                <div className={styles.popUpBlock}>
+
+                    <div className={styles.element} onClick={togglePopUp}>
+                        <FontAwesomeIcon icon={faXmark} onClick={togglePopUp} className={styles.icon}/>
+                    </div>
+                    <div className={styles.element} onClick={openProfile}>
+                        <FontAwesomeIcon icon={faUser} style={{fontSize: '2rem'}}/>
+                        <p>Профиль</p>
+                    </div>
+                    <div className={styles.element} onClick={openCart}>
+                        <FontAwesomeIcon icon={faCartShopping} style={{fontSize: '2rem'}}/>
+                        <p>Корзина</p>
+                    </div>
+                    <div className={styles.element} onClick={openCatalog}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{fontSize: '2rem'}}/>
+                        <p>Поиск</p>
+                    </div>
+                </div>
+
             </div>
             <header className={styles.header}>
                 <div className={styles.HeaderElements}>
-                    <div className={styles.element} onClick={togglePopUp}>
+                    <div onClick={togglePopUp}>
                         <FontAwesomeIcon icon={faBars} style={{ fontSize: '2rem' }} />
-                    </div>
-                    <div className={styles.element}>
-                        <FontAwesomeIcon icon={faUser} style={{ fontSize: '2rem' }} />
-                    </div>
-                    <div className={styles.element}>
-                        <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '2rem' }} />
-                    </div>
-                    <div className={styles.element}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ fontSize: '2rem' }} />
                     </div>
                 </div>
             </header>

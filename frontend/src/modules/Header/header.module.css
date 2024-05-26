@@ -2,7 +2,7 @@
 
 .header {
     width: 100%;
-    min-height: 120px;
+    min-height: 50px;
     height: fit-content;
     background-color: ghostwhite;
     overflow:hidden;
@@ -13,28 +13,28 @@
 }
 
 .HeaderElements{
-    width: 35%;
+    width: fit-content;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    min-width:400px;
-    height: 120px;
+    grid-template-columns: repeat(1,1fr);
+    min-width:100px;
+    height: 70px;
     min-height: 50px;
-    border-left:1px solid ;
-    border-right:1px solid ;
+    margin:20px 0 0 20px;
 }
 
 
 .element{
     display: flex;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: space-around;
     padding-bottom: 30px;
     transition:border-bottom 0.3s ease-in;
-    border-bottom: 3px solid transparent;
-    &:hover{
-        background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 165, 0, 0.56));
-        border-bottom: 3px solid orange;
+    border-bottom: 1px solid black;
+    p{
+        font-size: 20px;
+        font-family: "Poetsen One", sans-serif;
     }
+
 }
 
 .PopUpWindow {
@@ -42,24 +42,56 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 100vh;
+    width: 250px;
+    height: fit-content;
     border: 1px solid #000000;
     background-color: white;
-    transform: translateX(-100%);
+    box-shadow: 0 0 5px 2px #333;
+    transform: translateY(-102%);
     transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     .icon{
-        margin: 10px 10px 0px 10px;
+        margin: 10px 10px 0 10px;
         height: 30px;
         position: absolute;
         right: 0;
+        top: 0;
         font-size: 2.5rem;
     }
     }
+
+.element:nth-child(1){
+   transition: background-color 0.3s ease-in-out;
+    &:hover{
+        background-color: #d2d2d2;
+    }
+}
+
+.element:nth-child(2), .element:nth-child(3) , .element:nth-child(4){
+    transition: background-color 0.3s ease-in-out;
+    &:hover{
+        background-color: #b6dacf;
+    }
+}
 
 
 
 .PopUpWindow.open {
     transform: translateX(0);
+}
+
+
+.popUpBlock{
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    justify-self: center;
+    grid-template-columns: repeat(1, 6fr);
+    button{
+        border: 1px solid;
+    }
 }
 
