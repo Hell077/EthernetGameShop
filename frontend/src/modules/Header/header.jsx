@@ -13,7 +13,7 @@ function Header() {
     return (
         <>
             <div className={`${styles.PopUpWindow} ${open ? styles.open : ''}`}>
-                <FontAwesomeIcon icon={faXmark}  style={{fontSize: '2.5rem'}} onClick={togglePopUp}/>
+                <FontAwesomeIcon icon={faXmark} onClick={togglePopUp} className={styles.icon}/>
             </div>
             <header className={styles.header}>
                 <div className={styles.HeaderElements}>
