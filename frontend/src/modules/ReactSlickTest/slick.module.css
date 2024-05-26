@@ -2,14 +2,17 @@
     max-width: 1350px; /* Изменяем максимальную ширину контейнера */
     width: 100%; /* Делаем контейнер занимающим всю доступную ширину */
     margin: auto;
-    position: relative; /* Добавлено для позиционирования кнопок */
     background-color: #fff;
     border-radius: 10px;
+    height: auto;
 }
 
 .sliderWrapper{
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0 20px 0;
+    padding: 10px 0 0 0;
 }
+
+
 
 .sliderContainer .slick-arrow {
     position: absolute;
@@ -39,9 +42,9 @@
 }
 
 .slideButton img {
-    height: auto; /* Поддерживаем пропорции */
+    height: auto;
     display: block;
-    margin: auto; /* Центрируем изображение */
+    margin: auto;
 }
 
 .infoBox {

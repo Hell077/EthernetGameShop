@@ -67,14 +67,13 @@ function RegPage() {
                     </div>
                     <div className={style.buttonContainer}>
                         <button className={style.button} onClick={handleRegister}>Регистрация</button>
+                        <Link to="/">
+                            <button className={style.button}>К авторизации</button>
+                        </Link>
                     </div>
-                    <Link to="/">
-                        <button className={style.button}>К авторизации</button>
-                    </Link>
                 </div>
             </div>
         </>
-
     );
 }
 

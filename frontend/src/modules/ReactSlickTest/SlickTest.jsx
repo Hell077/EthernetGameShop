@@ -1,9 +1,7 @@
-import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './slick.module.css';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import PrevArrow from './LeftArrow';
 import NextArrow from './RightArrow';
 
@@ -13,36 +11,14 @@ const SlickButton = ({ path, content }) => (
   </a>
 );
 
-const CustomPrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <FaChevronLeft
-      className={`${className} ${styles.slickArrow} ${styles.slickPrev}`}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  );
-};
-
-const CustomNextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <FaChevronRight
-      className={`${className} ${styles.slickArrow} ${styles.slickNext}`}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  );
-};
-
 function Slick() {
   const slides = [
-    { img: 'https://source.unsplash.com/random/1800x700?sig=1', text: 'Slide 1 Description', price: '$49.99' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=2', text: 'Slide 2 Description', price: '$49.99' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=3', text: 'Slide 3 Description', price: '$59.99' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=4', text: 'Slide 4 Description', price: '$79.99' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=5', text: 'Slide 5 Description', price: '$89.99' },
-  ];
+  //   { img: 'https://source.unsplash.com/random/1800x700?sig=1', text: 'Slide 1 Description', price: '$49.99' },
+  //   { img: 'https://source.unsplash.com/random/1800x700?sig=2', text: 'Slide 2 Description', price: '$49.99' },
+  //   { img: 'https://source.unsplash.com/random/1800x700?sig=3', text: 'Slide 3 Description', price: '$59.99' },
+  //   { img: 'https://source.unsplash.com/random/1800x700?sig=4', text: 'Slide 4 Description', price: '$79.99' },
+  //   { img: 'https://source.unsplash.com/random/1800x700?sig=5', text: 'Slide 5 Description', price: '$89.99' },
+   ];
 
   const settings = {
     infinite: true,
@@ -62,13 +38,12 @@ function Slick() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.1,
           slidesToScroll: 1,
         },
       },
     ],
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+
   };
 
   return (

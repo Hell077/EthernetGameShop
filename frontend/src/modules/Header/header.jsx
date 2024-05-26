@@ -1,37 +1,37 @@
-import style from './header.module.css'
+import styles from './header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCubes, faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { useState } from "react";
 
 function Header() {
-    return (<>
-        <div className={style.header}>
-            <div className={style.container}>
-                <div className={style.cyberButik}>
-                    Cyber-Butik
-                </div>
-                <div className={style.logo}></div>
-                <div className={style.Catalog}>
-                    <FontAwesomeIcon className={style.bigSize} icon={faCubes} size="2xl" style={{ color: "#fff", }} />
-                    <p className={style.pHover}>Каталог продукции</p>
-                </div>
-                <div className={style.Card}>
-                    <FontAwesomeIcon className={style.bigSize} icon={faCartShopping} size="2xl" style={{ color: "#fff", }} />
-                    <p className={style.pHover}>Мои покупки</p>
-                </div>
-                <div className={style.Find}>
-                    <FontAwesomeIcon className={style.mediumSize} icon={faMagnifyingGlass} size="2xl" style={{ color: "#fff", }} />
-                    <p className={style.pHover}>Поиск игр</p>
-                </div>
-                <div className={style.bars}>
-                    <button className={style.barsButton}>
-                        <FontAwesomeIcon className={style.bigSize} icon={faBars} size="2xl" style={{ color: "#fff", }} />
-                    </button>
-                </div>
-            </div>
+  const [open, setOpen] = useState("none");
 
-        </div>
-    </>);
+    function OpenPopUp (){
+        setOpen(open === "block" ? "none" : "block");
+    }
+    return (<>
+            <div className={styles.PopUpWindow} style={{display:open}}>
+
+            </div>
+            <header className={styles.header}>
+                <div className={styles.HeaderElements}>
+                    <div className={styles.element} onClick={OpenPopUp}>
+                        <FontAwesomeIcon icon={faBars} style={{fontSize: '2rem'}}/>
+                    </div>
+                    <div className={styles.element}>
+                        <FontAwesomeIcon icon={faUser} style={{fontSize: '2rem'}}/>
+                    </div>
+                    <div className={styles.element}>
+                        <FontAwesomeIcon icon={faCartShopping} style={{fontSize: '2rem'}}/>
+                    </div>
+                    <div className={styles.element}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{fontSize: '2rem'}}/>
+                    </div>
+                </div>
+            </header>
+        </>
+    );
 }
 
 export default Header;
-
