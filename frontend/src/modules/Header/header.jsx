@@ -1,6 +1,6 @@
 import styles from './header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCartShopping, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCartShopping, faMagnifyingGlass, faXmark, faHouse, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
@@ -17,6 +17,13 @@ function Header() {
     const openCatalog = () =>{
         navigate('/catalog');
     }
+    const OpenMain = () =>{
+        navigate('/main')
+    }
+    const Leave = () =>{
+        navigate('/')
+    }
+
 
 
     function togglePopUp() {
@@ -30,6 +37,10 @@ function Header() {
                     <div className={styles.element} onClick={togglePopUp}>
                         <FontAwesomeIcon icon={faXmark} onClick={togglePopUp} className={styles.icon}/>
                     </div>
+                    <div className={styles.element} onClick={OpenMain}>
+                        <FontAwesomeIcon icon={faHouse} style={{fontSize: '2rem'}}/>
+                        <p>Главная</p>
+                    </div>
                     <div className={styles.element} onClick={openProfile}>
                         <FontAwesomeIcon icon={faUser} style={{fontSize: '2rem'}}/>
                         <p>Профиль</p>
@@ -41,6 +52,10 @@ function Header() {
                     <div className={styles.element} onClick={openCatalog}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{fontSize: '2rem'}}/>
                         <p>Поиск</p>
+                    </div>
+                    <div className={styles.element} onClick={Leave}>
+                        <FontAwesomeIcon icon={faArrowRightToBracket} flip="both" size="2xl" />
+                        <p>Выйти</p>
                     </div>
                 </div>
 

@@ -18,11 +18,14 @@
     transition: color ease-in-out 0.3s;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
+    border-bottom: 3px solid transparent;
+    &:hover{
+        color: rgb(67, 136, 80);
+        border-bottom: 3px solid rgb(67, 136, 80);
+    }
 }
 
-.button:hover {
-    color: rgb(67, 136, 80);
-}
+
 
 .ParentContainer {
     width: 75%;
@@ -30,6 +33,16 @@
     overflow-y: hidden;
     padding-top: 30px;
 }
+
+.buttonsContainer{
+    margin-left: 50px;
+    width:  fit-content;
+    height: fit-content;
+    /*border: 1px solid white;*/
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
 
 .massive {
     position: relative;
@@ -47,8 +60,6 @@
     border-radius: 5px;
     gap: 0 400px;
     box-shadow: 0 0 2px 3px rgba(136, 136, 136, 0.61);
-
-    /* Удалены лишние shadow свойства для согласованности */
 }
 
 .massive:hover {

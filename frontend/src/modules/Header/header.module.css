@@ -69,10 +69,19 @@
     }
 }
 
-.element:nth-child(2), .element:nth-child(3) , .element:nth-child(4){
+.element:nth-child(2), .element:nth-child(3) , .element:nth-child(4), .element:nth-child(5){
     transition: background-color 0.3s ease-in-out;
     &:hover{
         background-color: #b6dacf;
+    }
+}
+
+.element:nth-child(6){
+    transition: background-color 0.3s ease-in-out , color 0.3s ease-in-out;
+    color: black;
+    &:hover{
+        background-color: crimson;
+        color: white;
     }
 }
 
@@ -84,7 +93,8 @@
 
 
 .popUpBlock{
-    height: 300px;
+    height: fit-content;
+    min-height: 425px;
     width: 100%;
     overflow: hidden;
     display: grid;
