@@ -6,9 +6,9 @@ import Visa from './PayImage/Images/visaLogo.svg'
 import MasterCard from './PayImage/Images/MastercardLogo.svg'
 import PayPal from './PayImage/Images/PayPal.svg.png'
 
-function Footer() {
+function Footer(props) {
     return (
-        <footer>
+        <footer style={{bottom: props.bottom}}>
             <div className={style.FooterContent}>
                 <div className={style.TopContainer}>
                     <PayImage Image={Visa} />
