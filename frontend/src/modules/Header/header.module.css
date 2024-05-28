@@ -10,6 +10,9 @@
     filter: drop-shadow(0 0 0.75rem #b0b0b0);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .HeaderElements{
@@ -19,7 +22,8 @@
     min-width:100px;
     height: 70px;
     min-height: 50px;
-    margin:20px 0 0 20px;
+    margin-top: 30px;
+    margin-right: 250px;
 }
 
 
@@ -41,7 +45,7 @@
     z-index: 1500;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 1500px;
     width: 250px;
     height: fit-content;
     border: 1px solid #000000;
