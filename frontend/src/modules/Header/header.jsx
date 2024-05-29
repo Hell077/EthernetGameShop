@@ -23,9 +23,6 @@ function Header() {
     const Leave = () =>{
         navigate('/')
     }
-
-
-
     function togglePopUp() {
         setOpen(!open);
     }

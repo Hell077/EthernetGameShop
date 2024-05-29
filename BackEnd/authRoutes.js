@@ -1,4 +1,3 @@
-// authRoutes.js
 import express from 'express';
 import { getDB } from './mongoDb.js';
 
