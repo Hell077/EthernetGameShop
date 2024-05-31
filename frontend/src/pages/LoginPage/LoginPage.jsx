@@ -16,6 +16,7 @@ function LoginPage() {
       console.error('Логин и пароль должны быть заполнены');
       return;
     }
+
     setDisabled(true);
     try {
       const response = await axios.post('http://localhost:3000/login', {
@@ -39,6 +40,9 @@ function LoginPage() {
       setPassword('');
     }
   };
+  const RegisterRoute = () =>{
+    navigate('/register');
+  }
 
   return (
       <div className={style.flex}>
@@ -58,10 +62,9 @@ function LoginPage() {
             />
           </div>
           <div className={style.buttonContainer}>
-            <button className={style.button} onClick={handleLogin} disabled={disabled}>Авторизация</button>
-            <Link to="/register">
-              <button className={style.button}>Регистрация</button>
-            </Link>
+            <button className={style.loginBTN} onClick={handleLogin} disabled={disabled}>Авторизация</button>
+              <button className={style.regBTN} onClick={RegisterRoute}>Регистрация</button>
+
           </div>
         </div>
       </div>
