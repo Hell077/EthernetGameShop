@@ -2,14 +2,18 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Cart.module.css';
-// import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-
+import {useNavigate} from "react-router-dom";
 
 function Cart() {
     const login = useSelector((state) => state.login.login);
     const [cartData, setCartData] = useState(null);
     const [cartError, setCartError] = useState(false);
 
+    const navigate = useNavigate();
+
+    const OpenCatalog = () =>{
+        navigate('/catalog');
+    }
 
     useEffect(() => {
         const fetchCartData = async () => {
@@ -36,8 +40,9 @@ function Cart() {
     if (cartError) {
         return (
             <div className={styles.container}>
-                <h1>Корзина пользователя {login}</h1>
+                <h1>Ваша корзина</h1>
                 <p className={styles.error}>Корзина пустая</p>
+                <button className={styles.navigateBTN} onClick={OpenCatalog}>К покупкам</button>
             </div>
         );
     }
@@ -54,7 +59,7 @@ function Cart() {
                     <li key={item.productId} className={styles.cartItem}>
                         <span>{item.productName}</span>
                         <span>{item.quantity} шт.</span>
-                        <span>{item.price} руб.</span>
+                        <span>{item.price} руб</span>
                         <hr/>
                     </li>
                 ))}
