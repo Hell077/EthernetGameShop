@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { connectDB } from './mongoDb.js';
 import authRoutes from './authRoutes.js';
+import Cart from './Cart.js'
 
 const app = express();
 const port = 3000;
@@ -11,6 +12,7 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(Cart);
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту localhost:${port}`);

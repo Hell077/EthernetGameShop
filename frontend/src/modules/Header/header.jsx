@@ -1,18 +1,17 @@
 import styles from './header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCartShopping, faMagnifyingGlass, faXmark, faHouse, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass, faXmark, faHouse, faArrowRightToBracket} from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 function Header() {
+    const login = useSelector((state) => state.login.login);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const openProfile = () =>{
         navigate('/profile');
-    }
-    const openCart = () =>{
-        navigate('/cart');
     }
     const openCatalog = () =>{
         navigate('/catalog');
@@ -32,7 +31,8 @@ function Header() {
                 <div className={styles.popUpBlock}>
 
                     <div className={styles.element} onClick={togglePopUp}>
-                        <FontAwesomeIcon icon={faXmark} onClick={togglePopUp} className={styles.icon}/>
+                        <p className={styles.icon}>Аккаунт : {login}</p>
+                        <FontAwesomeIcon icon={faXmark} onClick={togglePopUp} className={styles.icon2}/>
                     </div>
                     <div className={styles.element} onClick={OpenMain}>
                         <FontAwesomeIcon icon={faHouse} style={{fontSize: '2rem'}}/>
@@ -41,10 +41,6 @@ function Header() {
                     <div className={styles.element} onClick={openProfile}>
                         <FontAwesomeIcon icon={faUser} style={{fontSize: '2rem'}}/>
                         <p>Профиль</p>
-                    </div>
-                    <div className={styles.element} onClick={openCart}>
-                        <FontAwesomeIcon icon={faCartShopping} style={{fontSize: '2rem'}}/>
-                        <p>Корзина</p>
                     </div>
                     <div className={styles.element} onClick={openCatalog}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{fontSize: '2rem'}}/>

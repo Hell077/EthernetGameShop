@@ -11,6 +11,11 @@
     background-color: #f9f9f9;
 }
 
+
+li{
+    border-bottom: 1px solid;
+}
+
 .error {
     color: red;
 }

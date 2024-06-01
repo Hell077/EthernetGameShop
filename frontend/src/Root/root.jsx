@@ -12,6 +12,7 @@ import ProfilePage from '../pages/ProfilePage/profilePage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import store from "../Store/store.js";
 import {Provider} from "react-redux";
+import CatalogPage from '../pages/CatalogPage/Catalog.jsx'
 
 
 import './root.css';
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="confident" element={<ConfPage/>}/>
                 <Route path="person" element={<PersPage/>}/>
                 <Route path="profile" element={<ProfilePage/>}/>
+                <Route path="catalog" element={<CatalogPage/>}/>
             </Routes>
         </BrowserRouter>
     </Provider>
