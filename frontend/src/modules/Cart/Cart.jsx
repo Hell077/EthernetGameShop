@@ -1,37 +1,43 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import styles from './Cart.module.css';
+// import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+
 
 function Cart() {
     const login = useSelector((state) => state.login.login);
     const [cartData, setCartData] = useState(null);
     const [cartError, setCartError] = useState(false);
 
+
     useEffect(() => {
         const fetchCartData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/cart?login=${login}`);
-                if (response.status === 200) { // Check if the response is successful
+                if (response.status === 200) {
                     if (response.data.error && response.data.error === 'Корзина не найдена') {
-                        setCartError(true); // Set cart error flag if cart not found
+                        setCartError(true);
                     } else {
                         setCartData(response.data);
                     }
                 }
             } catch (error) {
                 console.error('Ошибка при получении данных о корзине:', error);
-                setCartError(true); // Set cart error flag in case of any other error
+                setCartError(true);
             }
         };
+
+
 
         fetchCartData();
     }, [login]);
 
     if (cartError) {
         return (
-            <div>
+            <div className={styles.container}>
                 <h1>Корзина пользователя {login}</h1>
-                <p>Корзина пустая</p>
+                <p className={styles.error}>Корзина пустая</p>
             </div>
         );
     }
@@ -41,16 +47,19 @@ function Cart() {
     }
 
     return (
-        <>
+        <div className={styles.container}>
             <h1>Корзина пользователя {login}</h1>
-            <ul>
+            <ul className={styles.cartList}>
                 {cartData.cart.map((item) => (
-                    <li key={item.productId}>
-                        {item.productName} - {item.quantity} шт. - {item.price} руб.
+                    <li key={item.productId} className={styles.cartItem}>
+                        <span>{item.productName}</span>
+                        <span>{item.quantity} шт.</span>
+                        <span>{item.price} руб.</span>
+                        <hr/>
                     </li>
                 ))}
             </ul>
-        </>
+        </div>
     );
 }
 

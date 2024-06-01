@@ -6,10 +6,10 @@ import Cart from '../../modules/Cart/Cart.jsx'
 function ProfilePage() {
     return (
         <>
-            {/*<Header/>*/}
-            {/*<Aside/>*/}
+            <Header/>
+            <Aside/>
             <Cart/>
-            {/*<Footer/>*/}
+            <Footer/>
         </>
     );
 }
