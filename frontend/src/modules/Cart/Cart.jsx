@@ -2,16 +2,17 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Cart.module.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
     const login = useSelector((state) => state.login.login);
     const [cartData, setCartData] = useState(null);
     const [cartError, setCartError] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0); // Состояние для общей суммы
 
     const navigate = useNavigate();
 
-    const OpenCatalog = () =>{
+    const OpenCatalog = () => {
         navigate('/catalog');
     }
 
@@ -24,6 +25,11 @@ function Cart() {
                         setCartError(true);
                     } else {
                         setCartData(response.data);
+                        // Подсчет общей суммы при получении данных о корзине
+                        const totalPrice = response.data.cart.reduce((acc, item) => {
+                            return acc + (item.price * item.quantity);
+                        }, 0);
+                        setTotalPrice(totalPrice);
                     }
                 }
             } catch (error) {
@@ -31,8 +37,6 @@ function Cart() {
                 setCartError(true);
             }
         };
-
-
 
         fetchCartData();
     }, [login]);
@@ -64,6 +68,7 @@ function Cart() {
                     </li>
                 ))}
             </ul>
+            <p className={styles.totalPrice}>Общая сумма: {totalPrice} руб.</p>
         </div>
     );
 }

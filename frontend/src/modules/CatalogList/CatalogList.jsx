@@ -1,4 +1,4 @@
-//CatalogList.jsx
+// CatalogList.jsx
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import style from './CatalogList.module.css';
@@ -63,6 +63,15 @@ function CatalogList() {
     return (
         <div className={style.main}>
             <div className={style.filter}>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
+                <input type="checkbox"/>
             </div>
             <div className={style.catalog}>
                 <div className={style.inputBox}>
@@ -84,10 +93,15 @@ function CatalogList() {
                 <div className={style.catalogList}>
                     {filteredCatalog.map(item => (
                         <div key={item._id} className={style.catalogItem}>
-                            <img src={item.ImageLink} alt={item.Name} />
-                            <p>{item.Name}</p>
-                            <p>{item.Title}</p>
-                            <p>{item.Price} руб.</p>
+                            <img src={item.ImageLink} alt={item.Name}/>
+                            <p className={style.center}>{item.Name}</p>
+                            <p className={style.center}>{item.Title}</p>
+                            <p className={style.center}>{item.Price} руб.</p>
+                            <div className={style.tags}>
+                                {Array.isArray(item.Tags) && item.Tags.map((tag, index) => (
+                                    <span key={index} className={style.tag}>#{tag}</span>
+                                ))}
+                            </div>
                             <button onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
                                 Добавить в корзину
                             </button>
