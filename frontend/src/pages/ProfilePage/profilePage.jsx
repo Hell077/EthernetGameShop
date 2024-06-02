@@ -9,8 +9,7 @@ function ProfilePage() {
             <Header/>
             <Aside/>
             <Cart/>
-            <Footer/>
-        </>
+         </>
     );
 }
 

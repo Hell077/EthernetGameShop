@@ -1,18 +1,25 @@
+/* slick.module.css */
+
+.sliderWrapper {
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
 .sliderContainer {
-    max-width: 1350px; /* Изменяем максимальную ширину контейнера */
-    width: 100%; /* Делаем контейнер занимающим всю доступную ширину */
+    max-width: 1350px;
+    width: 100%;
     margin: auto;
     background-color: #fff;
     border-radius: 10px;
-    height: auto;
+    overflow: hidden; /* Добавлено для обрезки изображений, выходящих за пределы контейнера */
 }
 
-.sliderWrapper{
-    margin: 20px 0 20px 0;
-    padding: 10px 0 0 0;
+.sliderContainer img {
+    width: 100%; /* Автоматическое сжатие изображения по ширине контейнера */
+    height: auto; /* Сохранение пропорций изображения */
+    max-height: 700px; /* Ограничение максимальной высоты изображения */
+    object-fit: cover; /* Обрезка изображения для заполнения контейнера */
 }
-
-
 
 .sliderContainer .slick-arrow {
     position: absolute;
@@ -42,9 +49,9 @@
 }
 
 .slideButton img {
-    height: auto;
     display: block;
-    margin: auto;
+    width: 100%; /* Автоматическое сжатие изображения по ширине контейнера */
+    height: 700px; /* Сохранение пропорций изображения */
 }
 
 .infoBox {
@@ -53,6 +60,7 @@
     justify-content: space-between;
     padding: 10px;
     background: rgba(255, 255, 255, 0.7);
+    height: 20px;
 }
 
 .text {
