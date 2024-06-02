@@ -1,3 +1,5 @@
+//Cart.js
+
 import express from 'express';
 import { getDB } from './mongoDb.js';
 
@@ -26,7 +28,7 @@ router.get('/cart', async (req, res) => {
 });
 router.post('/cart/add', async (req, res) => {
     const db = getDB();
-    const { login, productId, quantity } = req.body;
+    const { login, productId, productName, price, quantity } = req.body;
 
     try {
         const userCart = await db.collection('carts').findOne({ login });
@@ -35,11 +37,11 @@ router.post('/cart/add', async (req, res) => {
             if (existingProductIndex !== -1) {
                 userCart.cart[existingProductIndex].quantity += quantity;
             } else {
-                userCart.cart.push({ productId, quantity });
+                userCart.cart.push({ productId, productName, price, quantity });
             }
             await db.collection('carts').updateOne({ login }, { $set: { cart: userCart.cart } });
         } else {
-            await db.collection('carts').insertOne({ login, cart: [{ productId, quantity }] });
+            await db.collection('carts').insertOne({ login, cart: [{ productId, productName, price, quantity }] });
         }
         res.json({ message: 'Товар успешно добавлен в корзину' });
     } catch (error) {

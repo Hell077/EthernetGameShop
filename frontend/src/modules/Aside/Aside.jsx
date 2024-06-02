@@ -20,7 +20,7 @@ function Aside() {
 
     return (
         <>
-            <aside style={{ transform }}>
+            <aside style={{ transform }} className={styles.aside}>
                 {login != ''}{
                 <div className={styles.login}>
                     <span>Имя пользователя</span>
