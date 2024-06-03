@@ -6,6 +6,7 @@ import { connectDB } from './mongoDb.js';
 import authRoutes from './authRoutes.js';
 import Cart from './Cart.js';
 import catalogRoutes from './catalogRoutes.js';
+import keysRoutes from './keysRoutes.js';
 
 const app = express();
 const port = 3000;
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(Cart);
-app.use(catalogRoutes); // Подключаем новый маршрут
+app.use(catalogRoutes);
+app.use(keysRoutes);
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту localhost:${port}`);

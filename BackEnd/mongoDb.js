@@ -7,9 +7,9 @@ let db;
 
 async function connectDB() {
   try {
-    await client.connect(); // Подключение к базе данных
+    await client.connect();
     console.log('Успешно подключено к базе данных');
-    db = client.db('login'); 
+    db = client.db('login');
   } catch (error) {
     console.error('Ошибка при подключении к базе данных:', error);
   }
@@ -20,6 +20,3 @@ function getDB() {
 }
 
 export { connectDB, getDB };
-
-
-

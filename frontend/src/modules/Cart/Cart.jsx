@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Cart.module.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
     const login = useSelector((state) => state.login.login);
     const [cartData, setCartData] = useState(null);
     const [cartError, setCartError] = useState(false);
-    const [totalPrice, setTotalPrice] = useState(0); // Состояние для общей суммы
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const navigate = useNavigate();
 
@@ -24,7 +24,6 @@ function Cart() {
                     setCartError(true);
                 } else {
                     setCartData(response.data);
-                    // Подсчет общей суммы при получении данных о корзине
                     const totalPrice = response.data.cart.reduce((acc, item) => {
                         return acc + (item.price * item.quantity);
                     }, 0);
@@ -40,11 +39,24 @@ function Cart() {
     const removeItemFromCart = async (productId) => {
         try {
             await axios.post('http://localhost:3000/cart/remove', { login, productId });
-            // После успешного удаления обновляем данные о корзине
             fetchCartData();
         } catch (error) {
             console.error('Ошибка при удалении товара из корзины:', error);
             setCartError(true);
+        }
+    };
+
+    const handlePayment = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/generate-keys', { login });
+            if (response.data.success) {
+                alert('Оплата прошла успешно, ключи сгенерированы.');
+                fetchCartData();
+            } else {
+                alert('Ошибка при оплате.');
+            }
+        } catch (error) {
+            console.error('Ошибка при оплате:', error);
         }
     };
 
@@ -70,7 +82,7 @@ function Cart() {
         <div className={styles.container}>
             <div className={styles.headContainer}>
                 <p className={styles.totalPrice}>Общая сумма: {totalPrice} руб</p>
-                <button className={styles.buyBtn}>Оплатить</button>
+                <button className={styles.buyBtn} onClick={handlePayment}>Оплатить</button>
             </div>
 
             <ul className={styles.cartList}>

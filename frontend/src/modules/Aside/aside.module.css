@@ -53,3 +53,25 @@
     justify-content: center;
     box-shadow: 0 3px 5px 5px rgba(73, 73, 73, 0.3);
 }
+
+
+.Cart{
+    top: 200px;
+}
+
+.MyKeys{
+    top: 150px;
+}
+
+.Cart, .MyKeys {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: 30px;
+    background: linear-gradient(135deg, #007bff, #005cff);
+    border: none;
+    transition: background 0.3s ease-in-out; /* Specify the transition for the background property */
+}
+
+.Cart:hover, .MyKeys:hover {
+    background: linear-gradient(135deg, #278ac7, #007bff);
+}
