@@ -9,6 +9,7 @@ function Cart() {
     const [cartData, setCartData] = useState(null);
     const [cartError, setCartError] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const navigate = useNavigate();
 
@@ -50,8 +51,11 @@ function Cart() {
         try {
             const response = await axios.post('http://localhost:3000/generate-keys', { login });
             if (response.data.success) {
-                alert('Оплата прошла успешно, ключи сгенерированы.');
-                fetchCartData();
+                setShowSuccessMessage(true);
+                setTimeout(() => {
+                    setShowSuccessMessage(false);
+                    fetchCartData();
+                }, 5000);
             } else {
                 alert('Ошибка при оплате.');
             }
@@ -101,6 +105,11 @@ function Cart() {
                 ))}
             </ul>
 
+            {showSuccessMessage && (
+                <div className={styles.successMessage}>
+                    Оплата прошла успешно, ключи сгенерированы.
+                </div>
+            )}
         </div>
     );
 }
