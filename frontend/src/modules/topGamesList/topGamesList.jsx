@@ -11,19 +11,17 @@ function TopGameList() {
     };
 
     return (
-        <>
-            <div className={style.TopGameList}>
-                <div className={style.ParentContainer}>
-                    <div className={style.buttonsContainer}>
-                        <Button onClick={() => handleNewsTypeChange('Новинки')} title='Новинки' />
-                        <Button onClick={() => handleNewsTypeChange('Лидеры продаж')} title='Лидеры продаж' />
-                    </div>
-                    <div className={style.list}>
-                        <List selectedNewsType={selectedNewsType} />
-                    </div>
+        <div className={style.TopGameList}>
+            <div className={style.ParentContainer}>
+                <div className={style.buttonsContainer}>
+                    <Button onClick={() => handleNewsTypeChange('Новинки')} title="Новинки" />
+                    <Button onClick={() => handleNewsTypeChange('Лидеры продаж')} title="Лидеры продаж" />
+                </div>
+                <div className={style.list}>
+                    <List selectedNewsType={selectedNewsType} />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
