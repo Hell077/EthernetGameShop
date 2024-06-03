@@ -43,6 +43,15 @@
 
 }
 
+
+.ToastContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999;
+}
+
+
 .catalog {
     display: grid;
     width: 100%;
@@ -64,6 +73,7 @@
     border-radius: 4px;
     width: 700px;
 }
+
 
 .inputBox button {
     padding: 10px;

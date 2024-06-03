@@ -7,6 +7,12 @@ import authRoutes from './authRoutes.js';
 import Cart from './Cart.js';
 import catalogRoutes from './catalogRoutes.js';
 import keysRoutes from './keysRoutes.js';
+import dataCarts from './data/carts.data.js'
+import userKeysData from './data/userKeys.data.js'
+import CatalogData from './data/catalog.data.js'
+import UpdateCatalog from "./adminDataChange/updateCatalog.js";
+import AddCatalogItem from "./adminDataChange/addCatalogItem.js";
+import usersData from "./data/users.data.js";
 
 const app = express();
 const port = 3000;
@@ -17,6 +23,13 @@ app.use(authRoutes);
 app.use(Cart);
 app.use(catalogRoutes);
 app.use(keysRoutes);
+app.use(dataCarts)
+app.use(userKeysData)
+app.use(userKeysData)
+app.use(CatalogData)
+app.use(UpdateCatalog)
+app.use(AddCatalogItem)
+app.use(usersData)
 
 app.listen(port, () => {
   console.log(`Сервер запущен на порту localhost:${port}`);

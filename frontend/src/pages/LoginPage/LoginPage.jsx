@@ -1,4 +1,3 @@
-// src/pages/LoginPage/LoginPage.jsx
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -6,6 +5,8 @@ import style from './login.module.css';
 import { useNavigate } from 'react-router-dom';
 import InputRgb from '../../modules/inputRGB/inputRGB';
 import { setLogin } from '../../Store/loginSlice.js';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginPage() {
   const [loginInput, setLoginInput] = useState('');
@@ -16,7 +17,7 @@ function LoginPage() {
 
   const handleLogin = async () => {
     if (!loginInput || !password) {
-      alert('Логин и пароль должны быть заполнены');
+      toast.error('Логин и пароль должны быть заполнены');
       console.error('Логин и пароль должны быть заполнены');
       return;
     }
@@ -31,14 +32,14 @@ function LoginPage() {
       console.log(response.data);
       if (response.status === 200) {
         console.log('Успешная авторизация');
-        dispatch(setLogin(loginInput));  // Сохраняем логин в Redux
+        dispatch(setLogin(loginInput));
         navigate('/main');
       } else {
-        alert('Неверный логин или пароль');
+        toast.error('Неверный логин или пароль');
       }
     } catch (error) {
       console.error('Ошибка при отправке данных на сервер:', error);
-      alert('Неверный логин или пароль');
+      toast.error('Неверный логин или пароль');
     } finally {
       setDisabled(false);
       setLoginInput('');
@@ -72,6 +73,7 @@ function LoginPage() {
             <button className={style.regBTN} onClick={RegisterRoute}>Регистрация</button>
           </div>
         </div>
+        <ToastContainer />
       </div>
   );
 }

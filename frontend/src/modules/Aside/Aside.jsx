@@ -34,6 +34,11 @@ function Aside({ setActiveComponent }) {
             <button className={styles.show} onClick={newTransform}></button>
             <button className={styles.Cart} onClick={() => setActiveComponent('cart')}>Корзина</button>
             <button className={styles.MyKeys} onClick={() => setActiveComponent('myKey')}>Мои ключи</button>
+            {login === "admin" && (
+                <button className={styles.Admin} onClick={() => setActiveComponent('Admin')}>
+                    Админка
+                </button>
+            )}
         </aside>
     );
 }

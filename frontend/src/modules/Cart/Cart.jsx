@@ -32,7 +32,6 @@ function Cart() {
                 }
             }
         } catch (error) {
-            console.error('Ошибка при получении данных о корзине:', error);
             setCartError(true);
         }
     };
