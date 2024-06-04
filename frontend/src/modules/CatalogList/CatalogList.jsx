@@ -30,7 +30,7 @@ function CatalogList() {
     };
 
     const handleSearch = () => {
-        if (searchTerm !== '') { // Проверяем, что searchTerm не пустой перед вызовом fetchCatalog
+        if (searchTerm !== '') {
             fetchCatalog();
         }
     };
@@ -79,76 +79,86 @@ function CatalogList() {
     });
 
     return (
-        <div className={style.main}>
-            <div className={style.filter}>
-                <h1>Фильтр поиска</h1>
-                <div className={style.block}>
-                    {[
-                        'Шутер',
-                        'MOBA',
-                        'RPG',
-                        'Экшн',
-                        'Приключения',
-                        'Симулятор',
-                        'Головоломка',
-                        'Стратегия',
-                        'Для одного игрока',
-                        'Кооператив',
-                        'Фэнтези',
-                        'Выживание',
-                        'Хоррор',
-                        'Гонки',
-                        'Реализм',
-                        'Открытый мир',
-                    ].map((filter) => (
-                        <FilterCheckBox key={filter} text={filter} onChange={() => handleFilterChange(filter)} />
-                    ))}
+        <><ToastContainer
+            autoClose={2000}
+            style={{
+                bottom:"0",
+                right: '20px',
+                zIndex: 9999,
+                pointerEvents: 'none'
+            }}
+            toastStyle={{ pointerEvents: 'auto' }}
+        />
+
+            <div className={style.main}>
+                <div className={style.filter}>
+                    <h1>Фильтр поиска</h1>
+                    <div className={style.block}>
+                        {[
+                            'Шутер',
+                            'MOBA',
+                            'RPG',
+                            'Экшн',
+                            'Приключения',
+                            'Симулятор',
+                            'Головоломка',
+                            'Стратегия',
+                            'Для одного игрока',
+                            'Кооператив',
+                            'Фэнтези',
+                            'Выживание',
+                            'Хоррор',
+                            'Гонки',
+                            'Реализм',
+                            'Открытый мир',
+                        ].map((filter) => (
+                            <FilterCheckBox key={filter} text={filter} onChange={() => handleFilterChange(filter)}/>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div className={style.catalog}>
-                <div className={style.inputBox}>
-                    <input
-                        type="text"
-                        placeholder="Поиск..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <button onClick={handleSearch}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" />
-                    </button>
-                    {searchTerm && (
-                        <button onClick={handleClearSearch}>
-                            <FontAwesomeIcon icon={faTimesCircle} size="2xl" />
+                <div className={style.catalog}>
+                    <div className={style.inputBox}>
+                        <input
+                            type="text"
+                            placeholder="Поиск..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button onClick={handleSearch}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl"/>
                         </button>
-                    )}
-                </div>
-                <div className={style.catalogList}>
-                    {filteredCatalog.map((item) => (
-                        <div key={item._id} className={style.catalogItem}>
-                            <img src={item.ImageLink} alt={item.Name} />
-                            <p className={style.center}>{item.Name}</p>
-                            <p className={style.center}>{item.Title}</p>
-                            <p className={style.center}>{item.Price} руб.</p>
-                            <div className={style.tags}>
-                                {Array.isArray(item.Tags) &&
-                                    item.Tags.map((tag, index) => (
-                                        <span key={index} className={style.tag}>
+                        {searchTerm && (
+                            <button onClick={handleClearSearch}>
+                                <FontAwesomeIcon icon={faTimesCircle} size="2xl"/>
+                            </button>
+                        )}
+                    </div>
+                    <div className={style.catalogList}>
+
+                        {filteredCatalog.map((item) => (
+                            <div key={item._id} className={style.catalogItem}>
+                                <img src={item.ImageLink} alt={item.Name}/>
+                                <p className={style.center}>{item.Name}</p>
+                                <p className={style.center}>{item.Title}</p>
+                                <p className={style.center}>{item.Price} руб.</p>
+                                <div className={style.tags}>
+                                    {Array.isArray(item.Tags) &&
+                                        item.Tags.map((tag, index) => (
+                                            <span key={index} className={style.tag}>
                                             #{tag}
                                         </span>
-                                    ))}
+                                        ))}
+                                </div>
+                                <button onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
+                                    Добавить в корзину
+                                </button>
                             </div>
-                            <button onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
-                                Добавить в корзину
-                            </button>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
-            <ToastContainer
-                autoClose={2000}
-                style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}
-            />
-        </div>
+        </>
+
     );
 }
 

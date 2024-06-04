@@ -4,6 +4,7 @@ import style from './Keys.module.css';
 
 function Keys() {
     const [keys, setKeys] = useState([]);
+    const [expandedUsers, setExpandedUsers] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,26 +19,59 @@ function Keys() {
         fetchData();
     }, []);
 
+    const toggleExpand = (userId) => {
+        setExpandedUsers((prev) => ({
+            ...prev,
+            [userId]: !prev[userId],
+        }));
+    };
+
     return (
         <div className={style.container}>
             <h2>Ключи пользователей</h2>
             <table className={style.table}>
                 <thead>
                 <tr>
-                    <th>ID ключа</th>
+                    <th>ID пользователя</th>
                     <th>Логин пользователя</th>
-                    <th>Название ключа</th>
-                    <th>Игра</th>
+                    <th>Действие</th>
                 </tr>
                 </thead>
                 <tbody>
-                {keys.map((key) => (
-                    <tr key={key._id}>
-                        <td>{key._id}</td>
-                        <td>{key.Login}</td>
-                        <td>{key.Keys[0].Name}</td>
-                        <td>{key.Keys[0].Game}</td>
-                    </tr>
+                {keys.map((user) => (
+                    <React.Fragment key={user._id}>
+                        <tr>
+                            <td>{user._id}</td>
+                            <td>{user.Login}</td>
+                            <td>
+                                <button onClick={() => toggleExpand(user._id)}>
+                                    {expandedUsers[user._id] ? 'Свернуть' : 'Развернуть'}
+                                </button>
+                            </td>
+                        </tr>
+                        {expandedUsers[user._id] && (
+                            <tr>
+                                <td colSpan="3">
+                                    <table className={style.innerTable}>
+                                        <thead>
+                                        <tr>
+                                            <th>Название ключа</th>
+                                            <th>Игра</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {user.Keys.map((key, index) => (
+                                            <tr key={`${user._id}-${index}`}>
+                                                <td>{key.Name}</td>
+                                                <td>{key.Game}</td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        )}
+                    </React.Fragment>
                 ))}
                 </tbody>
             </table>
