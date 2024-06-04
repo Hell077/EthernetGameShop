@@ -23,8 +23,14 @@ function CatalogAdmin(){
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setEditData({ ...editData, [name]: value });
+        if (name === 'Tags') {
+            setEditData({ ...editData, Tags: value.split(',').map(tag => tag.trim()) });
+        } else {
+            setEditData({ ...editData, [name]: value });
+        }
     };
+
+
 
     const handleUpdateClick = async () => {
         try {
@@ -52,14 +58,13 @@ function CatalogAdmin(){
                     <table className={style.catalogTable}>
                         <thead>
                         <tr>
-                            <th>Photo</th>
+                            <th>Фото</th>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th className="ImageLinkColumn">Image Link</th>
-                            {/* Добавлен className */}
-                            <th>Price</th>
-                            <th>Tags</th>
-                            <th>Actions</th>
+                            <th>Имя</th>
+                            <th className="ImageLinkColumn">Ссылка на изображение</th>
+                            <th>Цена</th>
+                            <th>Теги</th>
+                            <th>Действия</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,7 +75,7 @@ function CatalogAdmin(){
                                 <td>{isEditing && editData._id === item._id ? (
                                     <input type="text" name="Name" value={editData.Name} onChange={handleInputChange}/>
                                 ) : item.Name}</td>
-                                <td className="ImageLinkColumn"> {/* Добавлен className */}
+                                <td className="ImageLinkColumn">
                                     {isEditing && editData._id === item._id ? (
                                         <input type="text" name="ImageLink" value={editData.ImageLink}
                                                onChange={handleInputChange}/>
@@ -84,17 +89,20 @@ function CatalogAdmin(){
                                 </td>
                                 <td>
                                     {isEditing && editData._id === item._id ? (
-                                        <input type="text" name="Tags"
-                                               value={Array.isArray(editData.Tags) ? editData.Tags.join(', ') : ''}
-                                               onChange={handleInputChange}/>
+                                        <input
+                                            type="text"
+                                            name="Tags"
+                                            value={Array.isArray(editData.Tags) ? editData.Tags.join(', ') : ''}
+                                            onChange={handleInputChange}
+                                        />
                                     ) : Array.isArray(item.Tags) ? item.Tags.join(', ') : ''}
                                 </td>
                                 <td>
-                                    {isEditing && editData._id === item._id ? (
-                                        <button onClick={handleUpdateClick} className={style.button}>Save</button>
+                                {isEditing && editData._id === item._id ? (
+                                        <button onClick={handleUpdateClick} className={style.button}>Сохранить</button>
                                     ) : (
                                         <button onClick={() => handleEditClick(item)}
-                                                className={style.button}>Edit</button>
+                                                className={style.button}>Редактировать</button>
                                     )}
                                 </td>
                             </tr>

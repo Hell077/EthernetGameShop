@@ -34,13 +34,13 @@ function Carts() {
                 </thead>
                 <tbody>
                 {carts.map((cart) => (
-                    <tr key={cart._id.$oid}>
-                        <td>{cart._id.$oid}</td>
-                        <td>{cart.login}</td>
-                        <td>{cart.cart[0].productId}</td>
-                        <td>{cart.cart[0].productName}</td>
-                        <td>{cart.cart[0].price}</td>
-                        <td>{cart.cart[0].quantity}</td>
+                    <tr key={cart._id}>
+                        <td>{cart._id || 'N/A'}</td>
+                        <td>{cart.login || 'N/A'}</td>
+                        <td>{cart.cart[0]?.productId || 'N/A'}</td>
+                        <td>{cart.cart[0]?.productName || 'N/A'}</td>
+                        <td>{cart.cart[0]?.price || 'N/A'}</td>
+                        <td>{cart.cart[0]?.quantity || 'N/A'}</td>
                     </tr>
                 ))}
                 </tbody>

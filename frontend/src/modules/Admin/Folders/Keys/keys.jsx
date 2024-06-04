@@ -32,8 +32,8 @@ function Keys() {
                 </thead>
                 <tbody>
                 {keys.map((key) => (
-                    <tr key={key._id.$oid}>
-                        <td>{key._id.$oid}</td>
+                    <tr key={key._id}>
+                        <td>{key._id}</td>
                         <td>{key.Login}</td>
                         <td>{key.Keys[0].Name}</td>
                         <td>{key.Keys[0].Game}</td>
