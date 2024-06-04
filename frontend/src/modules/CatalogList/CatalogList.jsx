@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import FilterCheckBox from '../../modules/FilterCheckBox/filterCheckBox.jsx'; // Предполагается, что FilterCheckBox правильно импортирован
+import FilterCheckBox from '../../modules/FilterCheckBox/filterCheckBox.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import style from './CatalogList.module.css'; // Предполагается, что стили определены корректно
+import style from './CatalogList.module.css';
 
 function CatalogList() {
     const [catalog, setCatalog] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedFilters, setSelectedFilters] = useState([]);
-    const login = useSelector((state) => state.login.login); // Предполагается, что login правильно определен
+    const login = useSelector((state) => state.login.login);
 
     useEffect(() => {
         fetchCatalog();
@@ -24,7 +25,6 @@ function CatalogList() {
             setCatalog(data);
         } catch (error) {
             console.error('Ошибка при получении каталога:', error);
-            // Показываем ошибку через toast в случае неудачи при загрузке каталога
             toast.error('Ошибка при получении каталога');
         }
     };
@@ -52,10 +52,8 @@ function CatalogList() {
 
             const data = await response.json();
             if (response.ok) {
-                // Показываем сообщение об успешном добавлении в корзину через toast
                 toast.success('Товар успешно добавлен в корзину');
             } else {
-                // Показываем сообщение об ошибке через toast
                 toast.error('Ошибка при добавлении товара в корзину');
             }
         } catch (error) {
@@ -79,40 +77,27 @@ function CatalogList() {
     });
 
     return (
-        <><ToastContainer
-            autoClose={2000}
-            style={{
-                bottom:"0",
-                right: '20px',
-                zIndex: 9999,
-                pointerEvents: 'none'
-            }}
-            toastStyle={{ pointerEvents: 'auto' }}
-        />
-
+        <>
+            <ToastContainer
+                autoClose={2000}
+                style={{
+                    bottom: "0",
+                    right: '20px',
+                    zIndex: 9999,
+                    pointerEvents: 'none'
+                }}
+                toastStyle={{ pointerEvents: 'auto' }}
+            />
             <div className={style.main}>
                 <div className={style.filter}>
                     <h1>Фильтр поиска</h1>
                     <div className={style.block}>
                         {[
-                            'Шутер',
-                            'MOBA',
-                            'RPG',
-                            'Экшн',
-                            'Приключения',
-                            'Симулятор',
-                            'Головоломка',
-                            'Стратегия',
-                            'Для одного игрока',
-                            'Кооператив',
-                            'Фэнтези',
-                            'Выживание',
-                            'Хоррор',
-                            'Гонки',
-                            'Реализм',
-                            'Открытый мир',
+                            'Шутер', 'MOBA', 'RPG', 'Экшн', 'Приключения', 'Симулятор', 'Головоломка',
+                            'Стратегия', 'Для одного игрока', 'Кооператив', 'Фэнтези', 'Выживание',
+                            'Хоррор', 'Гонки', 'Реализм', 'Открытый мир'
                         ].map((filter) => (
-                            <FilterCheckBox key={filter} text={filter} onChange={() => handleFilterChange(filter)}/>
+                            <FilterCheckBox key={filter} text={filter} onChange={() => handleFilterChange(filter)} />
                         ))}
                     </div>
                 </div>
@@ -125,30 +110,28 @@ function CatalogList() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <button onClick={handleSearch}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl"/>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" />
                         </button>
                         {searchTerm && (
                             <button onClick={handleClearSearch}>
-                                <FontAwesomeIcon icon={faTimesCircle} size="2xl"/>
+                                <FontAwesomeIcon icon={faTimesCircle} size="2xl" />
                             </button>
                         )}
                     </div>
                     <div className={style.catalogList}>
-
                         {filteredCatalog.map((item) => (
                             <div key={item._id} className={style.catalogItem}>
-                                <img src={item.ImageLink} alt={item.Name}/>
-                                <p className={style.center}>{item.Name}</p>
-                                <p className={style.center}>{item.Title}</p>
-                                <p className={style.center}>{item.Price} руб.</p>
-                                <div className={style.tags}>
-                                    {Array.isArray(item.Tags) &&
-                                        item.Tags.map((tag, index) => (
-                                            <span key={index} className={style.tag}>
-                                            #{tag}
-                                        </span>
+                                <Link to={`/catalog/${item._id}`} className={style.link}>
+                                    <img src={item.ImageLink} alt={item.Name} />
+                                    <p className={style.center}>{item.Name}</p>
+                                    <p className={style.center}>{item.Title}</p>
+                                    <p className={style.center}>{item.Price} руб.</p>
+                                    <div className={style.tags}>
+                                        {Array.isArray(item.Tags) && item.Tags.map((tag, index) => (
+                                            <span key={index} className={style.tag}>#{tag}</span>
                                         ))}
-                                </div>
+                                    </div>
+                                </Link>
                                 <button onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
                                     Добавить в корзину
                                 </button>
@@ -158,7 +141,6 @@ function CatalogList() {
                 </div>
             </div>
         </>
-
     );
 }
 

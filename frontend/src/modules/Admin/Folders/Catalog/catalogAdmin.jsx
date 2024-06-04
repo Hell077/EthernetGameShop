@@ -62,6 +62,7 @@ function CatalogAdmin(){
                             <th>ID</th>
                             <th>Имя</th>
                             <th className="ImageLinkColumn">Ссылка на изображение</th>
+                            <th className="ImageLinkColumn">Описание</th>
                             <th>Цена</th>
                             <th>Теги</th>
                             <th>Действия</th>
@@ -81,6 +82,14 @@ function CatalogAdmin(){
                                                onChange={handleInputChange}/>
                                     ) : item.ImageLink}
                                 </td>
+
+                                <td className="ImageLinkColumn">
+                                    {isEditing && editData._id === item._id ? (
+                                        <textarea type="text" name="ImageLink" value={editData.Title}
+                                               onChange={handleInputChange}/>
+                                    ) : item.Title}
+                                </td>
+
                                 <td>
                                     {isEditing && editData._id === item._id ? (
                                         <input type="number" name="Price" value={editData.Price}
@@ -98,7 +107,7 @@ function CatalogAdmin(){
                                     ) : Array.isArray(item.Tags) ? item.Tags.join(', ') : ''}
                                 </td>
                                 <td>
-                                {isEditing && editData._id === item._id ? (
+                                    {isEditing && editData._id === item._id ? (
                                         <button onClick={handleUpdateClick} className={style.button}>Сохранить</button>
                                     ) : (
                                         <button onClick={() => handleEditClick(item)}

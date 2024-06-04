@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './Cart.module.css';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cart() {
     const login = useSelector((state) => state.login.login);
     const [cartData, setCartData] = useState(null);
     const [cartError, setCartError] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const navigate = useNavigate();
 
@@ -39,7 +40,9 @@ function Cart() {
     const removeItemFromCart = async (productId) => {
         try {
             await axios.post('http://localhost:3000/cart/remove', { login, productId });
-            fetchCartData();
+            toast.success("Успешно удалено")
+            setTimeout(() => fetchCartData(), 1000);
+
         } catch (error) {
             console.error('Ошибка при удалении товара из корзины:', error);
             setCartError(true);
@@ -50,16 +53,15 @@ function Cart() {
         try {
             const response = await axios.post('http://localhost:3000/generate-keys', { login });
             if (response.data.success) {
-                setShowSuccessMessage(true);
+                toast.success("Успешная оплата, перейдите в раздел *Мои Ключи*")
                 setTimeout(() => {
-                    setShowSuccessMessage(false);
                     fetchCartData();
                 }, 5000);
             } else {
-                alert('Ошибка при оплате.');
+                toast.error("Ошибка при оплате")
             }
         } catch (error) {
-            console.error('Ошибка при оплате:', error);
+            toast.error("Ошибка при оплате")
         }
     };
 
@@ -82,34 +84,33 @@ function Cart() {
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.headContainer}>
-                <p className={styles.totalPrice}>Общая сумма: {totalPrice} руб</p>
-                <button className={styles.buyBtn} onClick={handlePayment}>Оплатить</button>
-            </div>
-
-            <ul className={styles.cartList}>
-                {cartData.cart.map((item) => (
-                    <li key={item.productId} className={styles.cartItem}>
-                        <span className={styles.productName}>{item.productName}</span>
-                        <span className={styles.productQuantity}>{item.quantity} шт.</span>
-                        <span className={styles.productPrice}>{item.price} руб</span>
-                        <button
-                            className={styles.removeButton}
-                            onClick={() => removeItemFromCart(item.productId)}
-                        >
-                            Удалить
-                        </button>
-                    </li>
-                ))}
-            </ul>
-
-            {showSuccessMessage && (
-                <div className={styles.successMessage}>
-                    Оплата прошла успешно, ключи сгенерированы.
+        <>
+            <ToastContainer/>
+            <div className={styles.container}>
+                <div className={styles.headContainer}>
+                    <p className={styles.totalPrice}>Общая сумма: {totalPrice} руб</p>
+                    <button className={styles.buyBtn} onClick={handlePayment}>Оплатить</button>
                 </div>
-            )}
-        </div>
+
+                <ul className={styles.cartList}>
+                    {cartData.cart.map((item) => (
+                        <li key={item.productId} className={styles.cartItem}>
+                            <span className={styles.productName}>{item.productName}</span>
+                            <span className={styles.productQuantity}>{item.quantity} шт.</span>
+                            <span className={styles.productPrice}>{item.price} руб</span>
+                            <button
+                                className={styles.removeButton}
+                                onClick={() => removeItemFromCart(item.productId)}
+                            >
+                                Удалить
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+
+            </div>
+        </>
+
     );
 }
 
