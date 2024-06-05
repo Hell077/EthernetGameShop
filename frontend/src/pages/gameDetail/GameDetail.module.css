@@ -1,0 +1,90 @@
+/* GameDetail.module.css */
+
+.gameDetailContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.gameDetailWrapper {
+    max-width: 800px;
+    width: 100%;
+}
+
+.gameDetail {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.gameDetail .image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gameDetail .details {
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gameDetail .details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.gameDetail .details h2 {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.gameDetail .details p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.gameDetail .tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.gameDetail .tag {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.gameDetail .addToCartBtn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.gameDetail .addToCartBtn:hover {
+    background-color: #0056b3;
+}
+
+.gameDetail .loading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
