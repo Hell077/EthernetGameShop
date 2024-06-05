@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMagnifyingGlass, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 import FilterCheckBox from '../../modules/FilterCheckBox/filterCheckBox.jsx';
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import style from './CatalogList.module.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 function CatalogList() {
     const [catalog, setCatalog] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedFilters, setSelectedFilters] = useState([]);
     const login = useSelector((state) => state.login.login);
-    const [expanded, setExpanded] = useState(false);
+    const [expandedId, setExpandedId] = useState(null);
 
     useEffect(() => {
         fetchCatalog();
@@ -48,7 +48,7 @@ function CatalogList() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ productId, productName, price, login, quantity: 1 }),
+                body: JSON.stringify({productId, productName, price, login, quantity: 1}),
             });
 
             const data = await response.json();
@@ -70,6 +70,10 @@ function CatalogList() {
         );
     };
 
+    const handleToggleDescription = (itemId) => {
+        setExpandedId(expandedId === itemId ? null : itemId);
+    };
+
     const filteredCatalog = catalog.filter((item) => {
         const matchesSearchTerm = item.Name.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesFilters =
@@ -79,12 +83,14 @@ function CatalogList() {
 
     return (
         <>
-            <ToastContainer autoClose={2000} style={{ bottom: "0", right: '20px', zIndex: 9999, pointerEvents: 'none' }} toastStyle={{ pointerEvents: 'auto' }} />
+            <ToastContainer
+                autoClose={2000}
+                style={{bottom: '0', right: '20px', zIndex: 9999, pointerEvents: 'none'}}
+                toastStyle={{pointerEvents: 'auto'}}
+            />
             <div className={style.main}>
                 <div className={style.filter}>
-                    <h1 className={style.title}>
-                        Фильтр поиска
-                    </h1>
+                    <h1 className={style.title}>Фильтр поиска</h1>
                     <div className={style.block}>
                         {[
                             'Шутер',
@@ -104,7 +110,11 @@ function CatalogList() {
                             'Реализм',
                             'Открытый мир',
                         ].map((filter) => (
-                            <FilterCheckBox key={filter} text={filter} onChange={() => handleFilterChange(filter)} />
+                            <FilterCheckBox
+                                key={filter}
+                                text={filter}
+                                onChange={() => handleFilterChange(filter)}
+                            />
                         ))}
                     </div>
                 </div>
@@ -117,11 +127,11 @@ function CatalogList() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <button onClick={handleSearch}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" />
+                            <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl"/>
                         </button>
                         {searchTerm && (
                             <button onClick={handleClearSearch}>
-                                <FontAwesomeIcon icon={faTimesCircle} size="2xl" />
+                                <FontAwesomeIcon icon={faTimesCircle} size="2xl"/>
                             </button>
                         )}
                     </div>
@@ -130,21 +140,32 @@ function CatalogList() {
                             <div key={item._id} className={style.catalogItem}>
                                 <div className={style.link}>
                                     <Link to={`/catalog/${item._id}`}>
-                                        <img src={item.ImageLink} alt={item.Name} />
+                                        <img src={item.ImageLink} alt={item.Name}/>
                                     </Link>
                                     <p className={style.center}>{item.Name}</p>
-                                    <p className={style.center}>{expanded ? item.Title : item.Title.slice(0, 100)}</p>
-                                    <button className={style.showDialog} onClick={() => setExpanded(!expanded)}>
-                                        {expanded ? 'Свернуть' : 'Развернуть описание'}
+                                    <p className={style.center}>
+                                        {expandedId === item._id ? item.Title : item.Title.slice(0, 100)}
+                                    </p>
+                                    <button
+                                        className={style.showDialog}
+                                        onClick={() => handleToggleDescription(item._id)}
+                                    >
+                                        {expandedId === item._id ? 'Свернуть' : 'Развернуть описание'}
                                     </button>
                                     <p className={style.center}>{item.Price} руб.</p>
                                     <div className={style.tags}>
-                                        {Array.isArray(item.Tags) && item.Tags.map((tag, index) => (
-                                            <span key={index} className={style.tag}>#{tag}</span>
-                                        ))}
+                                        {Array.isArray(item.Tags) &&
+                                            item.Tags.map((tag, index) => (
+                                                <span key={index} className={style.tag}>
+                                                    #{tag}
+                                                </span>
+                                            ))}
                                     </div>
                                 </div>
-                                <button className={style.addCart} onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
+                                <button
+                                    className={style.addCart}
+                                    onClick={() => handleAddToCart(item._id, item.Name, item.Price)}
+                                >
                                     Добавить в корзину
                                 </button>
                             </div>
@@ -157,3 +178,4 @@ function CatalogList() {
 }
 
 export default CatalogList;
+
