@@ -1,112 +1,151 @@
-import React, { useEffect, useState } from "react";
-import style from './CatalogList.module.css'
-import AddItemFrom from '../../modules/Admin/Modules/AddItemFrom.jsx'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import FilterCheckBox from '../../modules/FilterCheckBox/filterCheckBox.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import style from './CatalogList.module.css';
 
-function CatalogAdmin() {
-    const [catalogData, setCatalogData] = useState([]);
-    const [editData, setEditData] = useState({_id: '', Name: '', ImageLink: '', Price: 0, Tags: []});
-    const [isEditing, setIsEditing] = useState(false);
+function CatalogList() {
+    const [catalog, setCatalog] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedFilters, setSelectedFilters] = useState([]);
+    const login = useSelector((state) => state.login.login);
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/Catalog')
-            .then(response => response.json())
-            .then(data => setCatalogData(data))
-            .catch(error => console.error('Error fetching data:', error));
+        fetchCatalog();
     }, []);
 
-    const handleEditClick = (item) => {
-        setEditData(item);
-        setIsEditing(true);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (name === 'Tags') {
-            setEditData({ ...editData, Tags: value.split(',').map(tag => tag.trim()) });
-        } else {
-            setEditData({ ...editData, [name]: value });
+    const fetchCatalog = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/catalog');
+            const data = await response.json();
+            setCatalog(data);
+        } catch (error) {
+            console.error('Ошибка при получении каталога:', error);
+            toast.error('Ошибка при получении каталога');
         }
     };
 
-    const handleUpdateClick = async () => {
+    const handleSearch = () => {
+        if (searchTerm !== '') {
+            fetchCatalog();
+        }
+    };
+
+    const handleClearSearch = () => {
+        setSearchTerm('');
+        fetchCatalog();
+    };
+
+    const handleAddToCart = async (productId, productName, price) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/Catalog/${editData._id}`, {
-                method: 'PUT',
+            const response = await fetch('http://localhost:3000/cart/add', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(editData),
+                body: JSON.stringify({ productId, productName, price, login, quantity: 1 }),
             });
+
             const data = await response.json();
-            console.log('Updated data:', data);
-            setIsEditing(false);
-            setCatalogData(prevData => prevData.map(item => (item._id === editData._id ? editData : item)));
+            if (response.ok) {
+                toast.success('Товар успешно добавлен в корзину');
+            } else {
+                toast.error('Ошибка при добавлении товара в корзину');
+            }
         } catch (error) {
-            console.error('Error updating data:', error);
+            console.error('Ошибка при добавлении товара в корзину:', error);
         }
     };
 
+    const handleFilterChange = (filter) => {
+        setSelectedFilters((prevSelectedFilters) =>
+            prevSelectedFilters.includes(filter)
+                ? prevSelectedFilters.filter((f) => f !== filter)
+                : [...prevSelectedFilters, filter]
+        );
+    };
+
+    const filteredCatalog = catalog.filter((item) => {
+        const matchesSearchTerm = item.Name.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesFilters =
+            selectedFilters.length === 0 || selectedFilters.every((filter) => item.Tags.includes(filter));
+        return matchesSearchTerm && matchesFilters;
+    });
+
     return (
         <>
-            <div className={style.adminContainer}>
-                <h1 className={style.adminTitle}>Admin Panel</h1>
-                <AddItemFrom/>
-                <div className="tableWrapper">
-                    <table className={style.catalogTable}>
-                        <thead>
-                        <tr>
-                            <th>Фото</th>
-                            <th>ID</th>
-                            <th>Имя</th>
-                            <th className="ImageLinkColumn">Ссылка на изображение</th>
-                            <th>Цена</th>
-                            <th>Теги</th>
-                            <th>Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {catalogData.map(item => (
-                            <tr key={item._id}>
-                                <td><img src={item.ImageLink} alt={item.Name} className={style.image}/></td>
-                                <td>{item._id}</td>
-                                <td>{isEditing && editData._id === item._id ? (
-                                    <input type="text" name="Name" value={editData.Name} onChange={handleInputChange}/>
-                                ) : item.Name}</td>
-                                <td className="ImageLinkColumn">
-                                    {isEditing && editData._id === item._id ? (
-                                        <input type="text" name="ImageLink" value={editData.ImageLink} onChange={handleInputChange}/>
-                                    ) : item.ImageLink}
-                                </td>
-                                <td>
-                                    {isEditing && editData._id === item._id ? (
-                                        <input type="number" name="Price" value={editData.Price} onChange={handleInputChange}/>
-                                    ) : item.Price}
-                                </td>
-                                <td>
-                                    {isEditing && editData._id === item._id ? (
-                                        <input
-                                            type="text"
-                                            name="Tags"
-                                            value={Array.isArray(editData.Tags) ? editData.Tags.join(', ') : ''}
-                                            onChange={handleInputChange}
-                                        />
-                                    ) : Array.isArray(item.Tags) ? item.Tags.join(', ') : ''}
-                                </td>
-                                <td>
-                                    {isEditing && editData._id === item._id ? (
-                                        <button onClick={handleUpdateClick} className={style.button}>Сохранить</button>
-                                    ) : (
-                                        <button onClick={() => handleEditClick(item)} className={style.button}>Редактировать</button>
-                                    )}
-                                </td>
-                            </tr>
+            <ToastContainer autoClose={2000} style={{ bottom: "0", right: '20px', zIndex: 9999, pointerEvents: 'none' }} toastStyle={{ pointerEvents: 'auto' }} />
+            <div className={style.main}>
+                <div className={style.filter}>
+                    <h1>Фильтр поиска</h1>
+                    <div className={style.block}>
+                        {[
+                            'Шутер',
+                            'MOBA',
+                            'RPG',
+                            'Экшн',
+                            'Приключения',
+                            'Симулятор',
+                            'Головоломка',
+                            'Стратегия',
+                            'Для одного игрока',
+                            'Кооператив',
+                            'Фэнтези',
+                            'Выживание',
+                            'Хоррор',
+                            'Гонки',
+                            'Реализм',
+                            'Открытый мир',
+                        ].map((filter) => (
+                            <FilterCheckBox key={filter} text={filter} onChange={() => handleFilterChange(filter)} />
                         ))}
-                        </tbody>
-                    </table>
+                    </div>
+                </div>
+                <div className={style.catalog}>
+                    <div className={style.inputBox}>
+                        <input
+                            type="text"
+                            placeholder="Поиск..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button onClick={handleSearch}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" />
+                        </button>
+                        {searchTerm && (
+                            <button onClick={handleClearSearch}>
+                                <FontAwesomeIcon icon={faTimesCircle} size="2xl" />
+                            </button>
+                        )}
+                    </div>
+                    <div className={style.catalogList}>
+                        {filteredCatalog.map((item) => (
+                            <div key={item._id} className={style.catalogItem}>
+                                <Link to={`/catalog/${item._id}`} className={style.link}>
+                                    <img src={item.ImageLink} alt={item.Name} />
+                                    <p className={style.center}>{item.Name}</p>
+                                    <p className={style.center}>{item.Title}</p>
+                                    <p className={style.center}>{item.Price} руб.</p>
+                                    <div className={style.tags}>
+                                        {Array.isArray(item.Tags) && item.Tags.map((tag, index) => (
+                                            <span key={index} className={style.tag}>#{tag}</span>
+                                        ))}
+                                    </div>
+                                </Link>
+                                <button onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
+                                    Добавить в корзину
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
     );
 }
 
-export default CatalogAdmin;
+export default CatalogList;
