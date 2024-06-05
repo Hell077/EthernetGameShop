@@ -36,18 +36,19 @@
 }
 
 .gameDetail .details h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .gameDetail .details h2 {
-    font-size: 20px;
+    font-size: 24px;
     color: #555;
     margin-bottom: 15px;
 }
 
 .gameDetail .details p {
-    font-size: 18px;
+    font-size: 20px;
     color: #333;
     margin-bottom: 10px;
 }
@@ -59,12 +60,13 @@
 }
 
 .gameDetail .tag {
-    margin-right: 5px;
-    margin-bottom: 5px;
-    padding: 5px 10px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 6px 12px;
     background-color: #f0f0f0;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 16px;
+    color: #555;
 }
 
 .gameDetail .addToCartBtn {
@@ -72,10 +74,11 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 12px 24px;
     cursor: pointer;
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
 }
 
 .gameDetail .addToCartBtn:hover {
@@ -83,7 +86,7 @@
 }
 
 .gameDetail .loading {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: #333;
     margin-top: 20px;

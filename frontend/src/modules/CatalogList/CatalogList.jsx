@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -7,12 +6,14 @@ import FilterCheckBox from '../../modules/FilterCheckBox/filterCheckBox.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import style from './CatalogList.module.css';
+import {Link} from 'react-router-dom'
 
 function CatalogList() {
     const [catalog, setCatalog] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedFilters, setSelectedFilters] = useState([]);
     const login = useSelector((state) => state.login.login);
+    const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
         fetchCatalog();
@@ -81,7 +82,9 @@ function CatalogList() {
             <ToastContainer autoClose={2000} style={{ bottom: "0", right: '20px', zIndex: 9999, pointerEvents: 'none' }} toastStyle={{ pointerEvents: 'auto' }} />
             <div className={style.main}>
                 <div className={style.filter}>
-                    <h1>Фильтр поиска</h1>
+                    <h1 className={style.title}>
+                        Фильтр поиска
+                    </h1>
                     <div className={style.block}>
                         {[
                             'Шутер',
@@ -125,18 +128,23 @@ function CatalogList() {
                     <div className={style.catalogList}>
                         {filteredCatalog.map((item) => (
                             <div key={item._id} className={style.catalogItem}>
-                                <Link to={`/catalog/${item._id}`} className={style.link}>
-                                    <img src={item.ImageLink} alt={item.Name} />
+                                <div className={style.link}>
+                                    <Link to={`/catalog/${item._id}`}>
+                                        <img src={item.ImageLink} alt={item.Name} />
+                                    </Link>
                                     <p className={style.center}>{item.Name}</p>
-                                    <p className={style.center}>{item.Title}</p>
+                                    <p className={style.center}>{expanded ? item.Title : item.Title.slice(0, 100)}</p>
+                                    <button className={style.showDialog} onClick={() => setExpanded(!expanded)}>
+                                        {expanded ? 'Свернуть' : 'Развернуть описание'}
+                                    </button>
                                     <p className={style.center}>{item.Price} руб.</p>
                                     <div className={style.tags}>
                                         {Array.isArray(item.Tags) && item.Tags.map((tag, index) => (
                                             <span key={index} className={style.tag}>#{tag}</span>
                                         ))}
                                     </div>
-                                </Link>
-                                <button onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
+                                </div>
+                                <button className={style.addCart} onClick={() => handleAddToCart(item._id, item.Name, item.Price)}>
                                     Добавить в корзину
                                 </button>
                             </div>
