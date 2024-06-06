@@ -70,12 +70,25 @@
 .Cart, .MyKeys, .Admin {
     position: absolute;
     width: calc(100% - 60px);
-    height: 30px;
+    height: 40px; /* Slightly taller for better touch targets */
     background: linear-gradient(135deg, #007bff, #005cff);
     border: none;
-    transition: background 0.3s ease-in-out;
+    border-radius: 8px; /* Rounded corners */
+    color: #fff; /* White text color */
+    font-size: 16px; /* Larger font size for readability */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    line-height: 40px; /* Vertically center the text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    cursor: pointer; /* Pointer cursor on hover */
 }
 
-.Cart:hover, .MyKeys:hover {
+.Cart:hover, .MyKeys:hover, .Admin:hover {
     background: linear-gradient(135deg, #278ac7, #007bff);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.Cart:active, .MyKeys:active, .Admin:active {
+    transform: translateY(1px); /* Button press effect */
 }

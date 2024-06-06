@@ -10,15 +10,24 @@
 
 .container button {
     margin-bottom: 10px;
-    padding: 8px 12px;
-    background-color: #007bff;
+    padding: 10px 16px; /* Slightly increased padding for better touch targets */
+    background: linear-gradient(135deg, #007bff, #005cff); /* Gradient background */
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out; /* Smooth transitions */
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .container button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #278ac7, #007bff); /* Gradient change on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.container button:active {
+    transform: translateY(1px); /* Button press effect */
 }

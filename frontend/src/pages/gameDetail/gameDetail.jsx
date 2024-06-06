@@ -63,23 +63,26 @@ function GameDetail() {
     return (
         <>
             <Header/>
-            <div className={style.gameDetail}>
-                <ToastContainer autoClose={2000}/>
-                <img src={game.ImageLink} alt={game.Name} className={style.image}/>
-                <div className={style.details}>
-                    <h1>{game.Name}</h1>
-                    <h2>{game.Title}</h2>
-                    <p>Цена: {game.Price} руб.</p>
-                    <div className={style.tags}>
-                        {Array.isArray(game.Tags) && game.Tags.map((tag, index) => (
-                            <span key={index} className={style.tag}>#{tag}</span>
-                        ))}
+            <div className={style.gameDetailContainer}>
+                <div className={style.gameDetail}>
+                    <ToastContainer autoClose={2000}/>
+                    <img src={game.ImageLink} alt={game.Name} className={style.image}/>
+                    <div className={style.details}>
+                        <h1>{game.Name}</h1>
+                        <h2>{game.Title}</h2>
+                        <p>Цена: {game.Price} руб.</p>
+                        <div className={style.tags}>
+                            {Array.isArray(game.Tags) && game.Tags.map((tag, index) => (
+                                <span key={index} className={style.tag}>#{tag}</span>
+                            ))}
+                        </div>
+                        <button onClick={handleAddToCart} className={style.addToCartBtn}>
+                            Добавить в корзину
+                        </button>
                     </div>
-                    <button onClick={handleAddToCart} className={style.addToCartBtn}>
-                        Добавить в корзину
-                    </button>
                 </div>
             </div>
+
         </>
 
     );
