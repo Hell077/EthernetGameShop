@@ -13,11 +13,11 @@ const SlickButton = ({ path, content }) => (
 
 function Slick() {
   const slides = [
-    { img: 'https://source.unsplash.com/random/1800x700?sig=1', text: 'Slide 1 Description', price: '$49.99', path: '' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=2', text: 'Slide 2 Description', price: '$49.99', path: '' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=3', text: 'Slide 3 Description', price: '$59.99', path: '' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=4', text: 'Slide 4 Description', price: '$79.99', path: '' },
-    { img: 'https://source.unsplash.com/random/1800x700?sig=5', text: 'Slide 5 Description', price: '$89.99', path: '' },
+    { img: 'https://www.amd.com/content/dam/amd/en/images/games/red-dead-redemption-2/348038-red-dead-redemption-keyart.jpg', text: 'Red Dead Redemption 2', price: '3999руб.', path: 'http://localhost:5173/catalog/665cce475b7d584f9a5ad445' },
+    { img: 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/11/forza-horizon-5-sand-dunes-logo.jpg', text: 'Forza Horizon 5', price: '3999руб.', path: 'http://localhost:5173/catalog/665cd4435b7d584f9a5ad44c' },
+    { img: 'https://rushbe.ru/_next/image?url=https%3A%2F%2Frushbe.ru%2Fmedia%2Fhor.jfif_1666962018343.webp&w=1920&q=75', text: 'Europa Universalis IV', price: '2399руб.', path: 'http://localhost:5173/catalog/665cd72f5b7d584f9a5ad456' },
+    { img: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/ArmA_3_Logo_%28Black%29.png', text: 'Arma3', price: '2199руб.', path: 'http://localhost:5173/catalog/665cdb695b7d584f9a5ad458' },
+    { img: 'https://mlpnk72yciwc.i.optimole.com/cqhiHLc.IIZS~2ef73/w:auto/h:auto/q:75/https://bleedingcool.com/wp-content/uploads/2018/12/Anno-1800.jpg', text: 'Anno 1800', price: '2899руб.', path: 'http://localhost:5173/catalog/665cdb6f5b7d584f9a5ad45a' },
   ];
 
   const settings = {
