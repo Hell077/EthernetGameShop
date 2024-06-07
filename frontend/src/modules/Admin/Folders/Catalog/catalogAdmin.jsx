@@ -79,6 +79,7 @@ function CatalogAdmin() {
                             <th>Имя</th>
                             <th className="ImageLinkColumn">Ссылка на изображение</th>
                             <th>Цена</th>
+                            <th>Описание</th>
                             <th>Теги</th>
                             <th>Действия</th>
                         </tr>
@@ -100,6 +101,11 @@ function CatalogAdmin() {
                                     {isEditing && editData._id === item._id ? (
                                         <input type="number" name="Price" value={editData.Price} onChange={handleInputChange} />
                                     ) : item.Price}
+                                </td>
+                                <td>
+                                    {isEditing && editData._id === item._id ? (
+                                        <textarea type="number" name="Title" value={editData.Title} onChange={handleInputChange} />
+                                    ) : item.Title}
                                 </td>
                                 <td>
                                     {isEditing && editData._id === item._id ? (
