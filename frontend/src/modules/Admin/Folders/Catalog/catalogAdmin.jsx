@@ -104,7 +104,7 @@ function CatalogAdmin() {
                                 </td>
                                 <td>
                                     {isEditing && editData._id === item._id ? (
-                                        <textarea type="number" name="Title" value={editData.Title} onChange={handleInputChange} />
+                                        <textarea type="text" name="Title" value={editData.Title} onChange={handleInputChange} />
                                     ) : item.Title}
                                 </td>
                                 <td>
