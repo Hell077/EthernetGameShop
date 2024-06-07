@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import style from './AddItemForm.module.css'; // Подключаем файл стилей
 
 const AddItemForm = () => {
@@ -18,12 +20,22 @@ const AddItemForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Validate form data
+        if (!formData.ImageLink || !formData.Name || !formData.Price || !formData.Title || !formData.Tags) {
+            toast.error('Пожалуйста, заполните все поля.');
+            return;
+        }
+
         try {
             const tagsArray = formData.Tags.split(',').map(tag => tag.trim());
             const newItem = { ...formData, Tags: tagsArray };
 
             const response = await axios.post('http://localhost:3000/api/Catalog', newItem);
             console.log('Response from server:', response.data);
+
+            toast.success('Элемент успешно добавлен!');
+
             setFormData({
                 ImageLink: '',
                 Name: '',
@@ -33,6 +45,7 @@ const AddItemForm = () => {
             });
         } catch (error) {
             console.error('Error adding new catalog item:', error);
+            toast.error('Произошла ошибка при добавлении элемента.');
         }
     };
 
@@ -61,6 +74,7 @@ const AddItemForm = () => {
                 </div>
                 <button type="submit" className={style.button}>Add Item</button>
             </form>
+            <ToastContainer />
         </div>
     );
 };
