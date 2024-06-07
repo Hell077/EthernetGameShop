@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import style from './AddItemForm.module.css'; // Подключаем файл стилей
+import { toast } from 'react-toastify';
 
 const AddItemForm = () => {
     const [formData, setFormData] = useState({
@@ -20,22 +19,20 @@ const AddItemForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const { ImageLink, Name, Price, Title, Tags } = formData;
 
-        // Validate form data
-        if (!formData.ImageLink || !formData.Name || !formData.Price || !formData.Title || !formData.Tags) {
-            toast.error('Пожалуйста, заполните все поля.');
+        if (!ImageLink || !Name || !Title || !Tags || Price <= 0) {
+            toast.error('Please fill in all fields and ensure Price is greater than 0.');
             return;
         }
 
         try {
-            const tagsArray = formData.Tags.split(',').map(tag => tag.trim());
+            const tagsArray = Tags.split(',').map(tag => tag.trim());
             const newItem = { ...formData, Tags: tagsArray };
 
             const response = await axios.post('http://localhost:3000/api/Catalog', newItem);
+            toast.success('Item added successfully!');
             console.log('Response from server:', response.data);
-
-            toast.success('Элемент успешно добавлен!');
-
             setFormData({
                 ImageLink: '',
                 Name: '',
@@ -44,8 +41,8 @@ const AddItemForm = () => {
                 Tags: '',
             });
         } catch (error) {
+            toast.error('Error adding new catalog item.');
             console.error('Error adding new catalog item:', error);
-            toast.error('Произошла ошибка при добавлении элемента.');
         }
     };
 
@@ -74,7 +71,6 @@ const AddItemForm = () => {
                 </div>
                 <button type="submit" className={style.button}>Add Item</button>
             </form>
-            <ToastContainer />
         </div>
     );
 };

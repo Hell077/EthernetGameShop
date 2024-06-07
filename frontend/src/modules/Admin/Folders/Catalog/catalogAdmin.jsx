@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Catalog.module.css";
 import AddItemFrom from "../../Modules/AddItemFrom.jsx";
+import { toast } from 'react-toastify';
 
 function CatalogAdmin() {
     const [catalogData, setCatalogData] = useState([]);
@@ -30,7 +31,7 @@ function CatalogAdmin() {
 
     const handleUpdateClick = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/Catalog/${editData._id}`, {
+            const response = await fetch(`http://localhost:3000/api/UpdateCatalog`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,11 +39,29 @@ function CatalogAdmin() {
                 body: JSON.stringify(editData),
             });
             const data = await response.json();
+            toast.success('Item updated successfully!');
             console.log('Updated data:', data);
             setIsEditing(false);
             setCatalogData(prevData => prevData.map(item => (item._id === editData._id ? editData : item)));
         } catch (error) {
+            toast.error('Error updating item.');
             console.error('Error updating data:', error);
+        }
+    };
+
+    const handleDeleteClick = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/Catalog/${id}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error('Error deleting item');
+            }
+            toast.success('Item deleted successfully!');
+            setCatalogData(prevData => prevData.filter(item => item._id !== id));
+        } catch (error) {
+            toast.error('Error deleting item.');
+            console.error('Error deleting data:', error);
         }
     };
 
@@ -94,9 +113,15 @@ function CatalogAdmin() {
                                 </td>
                                 <td>
                                     {isEditing && editData._id === item._id ? (
-                                        <button onClick={handleUpdateClick} className={style.button}>Сохранить</button>
+                                        <>
+                                            <button onClick={handleUpdateClick} className={style.button}>Сохранить</button>
+                                            <button onClick={() => setIsEditing(false)} className={style.button}>Отмена</button>
+                                        </>
                                     ) : (
-                                        <button onClick={() => handleEditClick(item)} className={style.button}>Редактировать</button>
+                                        <>
+                                            <button onClick={() => handleEditClick(item)} className={style.button}>Редактировать</button>
+                                            <button onClick={() => handleDeleteClick(item._id)} className={style.button}>Удалить</button>
+                                        </>
                                     )}
                                 </td>
                             </tr>
