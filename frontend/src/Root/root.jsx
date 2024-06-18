@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<LoginPage/>}/>
+                <Route path="/" element={<MainPage/>}/>
                 <Route path="/register" element={<RegPage/>}/>
                 <Route path="/main" element={<MainPage/>}/>
                 <Route path="*" element={<NotFoundPage/>}/>
