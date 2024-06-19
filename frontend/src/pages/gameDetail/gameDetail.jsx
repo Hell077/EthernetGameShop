@@ -48,7 +48,8 @@ function GameDetail() {
             const data = await response.json();
             if (response.ok && login) {
                 toast.success('Товар успешно добавлен в корзину');
-            } else {
+            }
+            else {
                 toast.error('Ошибка при добавлении товара в корзину');
             }
         } catch (error) {

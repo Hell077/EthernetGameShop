@@ -65,3 +65,18 @@
 .regBTN:active {
   background-color: #1e7e34;
 }
+
+
+.toMain{
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toMain:hover {
+  background-color: #218838;
+}

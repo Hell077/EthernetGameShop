@@ -51,6 +51,10 @@ function LoginPage() {
     navigate('/register');
   }
 
+  const goToMain = () => {
+    navigate('/');
+  }
+
   return (
       <div className={style.flex}>
         <div className={style.registerContainer}>
@@ -71,6 +75,7 @@ function LoginPage() {
           <div className={style.buttonContainer}>
             <button className={style.loginBTN} onClick={handleLogin} disabled={disabled}>Авторизация</button>
             <button className={style.regBTN} onClick={RegisterRoute}>Регистрация</button>
+            <button className={style.toMain} onClick={goToMain}>На главную</button>
           </div>
         </div>
         <ToastContainer />
