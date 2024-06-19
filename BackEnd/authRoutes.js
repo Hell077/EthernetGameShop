@@ -26,6 +26,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   const { login, password } = req.body;
+  
 
   if (!login || !password) {
     return res.status(400).send({ error: 'Логин и пароль должны быть заполнены' });
